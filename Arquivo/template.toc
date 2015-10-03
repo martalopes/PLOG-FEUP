@@ -1,0 +1,4 @@
+\select@language {portuguese}
+\contentsline {section}{\numberline {1}Descri\IeC {\c c}\IeC {\~a}o do Jogo}{3}
+\contentsline {subsection}{\numberline {1.1}Hist\IeC {\'o}ria}{3}
+\contentsline {subsection}{\numberline {1.2}Regras de Jogo}{4}
