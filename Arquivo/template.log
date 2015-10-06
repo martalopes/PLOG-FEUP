@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  4 OCT 2015 20:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  6 OCT 2015 18:56
 entering extended mode
 **C:/Users/marta/Documents/GitHub/PLOG/Arquivo/template.tex
 (C:/Users/marta/Documents/GitHub/PLOG/Arquivo/template.tex
@@ -495,33 +495,74 @@ Package pdftex.def Info: fig11.png used on input line 162.
 File: fig12.png Graphic file (type png)
 
 <use fig12.png>
-Package pdftex.def Info: fig12.png used on input line 169.
+Package pdftex.def Info: fig12.png used on input line 168.
 (pdftex.def)             Requested size: 208.67769pt x 155.83075pt.
- 
+ [8 <./fig12.png>]
+Overfull \hbox (1.64532pt too wide) in paragraph at lines 177--177
+[]\T1/cmr/bx/n/14.4 Representação e vi-su-a-li-za-ção do Es-tado de Jogo 
+ []
+
+<gameex1.png, id=63, 438.8897pt x 306.39468pt>
+File: gameex1.png Graphic file (type png)
+ <use gameex1.png>
+Package pdftex.def Info: gameex1.png used on input line 189.
+(pdftex.def)             Requested size: 394.99707pt x 275.75267pt.
+
+Overfull \hbox (49.99707pt too wide) in paragraph at lines 189--191
+ [][] 
+ []
+
+<gameex2.png, id=64, 444.91219pt x 294.34969pt>
+File: gameex2.png Graphic file (type png)
+ <use gameex2.png>
+Package pdftex.def Info: gameex2.png used on input line 192.
+(pdftex.def)             Requested size: 400.41725pt x 264.91225pt.
+
+Overfull \hbox (55.41725pt too wide) in paragraph at lines 192--194
+ [][] 
+ []
+
+[9 <./gameex1.png>] <gameex3.png, id=69, 450.9347pt x 296.60812pt>
+File: gameex3.png Graphic file (type png)
+
+<use gameex3.png>
+Package pdftex.def Info: gameex3.png used on input line 195.
+(pdftex.def)             Requested size: 405.83748pt x 266.94484pt.
+
+Overfull \hbox (60.83748pt too wide) in paragraph at lines 195--197
+ [][] 
+ []
+
+[10 <./gameex2.png> <./gameex3.png>]
+Overfull \hbox (2.44977pt too wide) in paragraph at lines 202--202
+[]\T1/cmr/bx/n/12 Cabeçalho do pre-di-cado de mo-vi-men-ta-ção de uma peça 
+ []
+
+
 AED: lastpage setting LastPage
-[8 <./fig12.png>] (template.aux) ) 
+[11] (template.aux) ) 
 Here is how much of TeX's memory you used:
- 4088 strings out of 493673
- 54266 string characters out of 3141530
- 216110 words of memory out of 3000000
- 7371 multiletter control sequences out of 15000+200000
+ 4103 strings out of 493673
+ 54488 string characters out of 3141530
+ 216112 words of memory out of 3000000
+ 7383 multiletter control sequences out of 15000+200000
  13998 words of font info for 33 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  27i,7n,43p,522b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\marta\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk> <C:\Users\marta\AppData\Local\MiKT
-eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\marta\AppData\
-Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\mart
-a\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\
-Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx120
-0.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
-00\ecrm1440.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknapp
-en\ec\dpi600\ecbx1440.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
-our\jknappen\ec\dpi600\ecbx2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb>
-Output written on template.pdf (8 pages, 1297396 bytes).
+ <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\ecti1000.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\
+pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\marta\AppData\Local\MiKTeX\
+2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\marta\AppData\Loc
+al\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\marta\A
+ppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Use
+rs\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.p
+k> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
+ecbx1440.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecbx2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb>
+Output written on template.pdf (11 pages, 1328223 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
+ 349 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -164,17 +164,43 @@ Marta Lopes - 201208067 \\
 
 	\item A cada movimento o jogador poderá \textbf{capturar uma peça adversária} quando conseguir rodea-la por duas peças da sua cor seja ortogonal ou diagonalmente (Fig.12). Uma peça capturada é revertida passando para a cor contrária. 
 
-	
 \begin{center}
 \includegraphics[scale=0.9]{fig12.png}\linebreak\linebreak 
 \end{center}
 
-
 	\item O \textbf{vencedor} será o jogador que terá a sua torre no centro no final do jogo. O jogo acaba quando não existirem mais jogadas possíveis ou, se for um jogo cronometrado, quando o tempo acabar. Se o centro se mantiver sem nenhuma torre até ao final do jogo, é um empate. 
 	
 \end{itemize}
+\newpage
+
+\newpage
+\section{Representação e visualização do Estado de Jogo}
 
 
+
+\begin{center}
+
+\textbf{P: Peças pretas} \linebreak\linebreak
+\textbf{W: Peças brancas} \linebreak\linebreak
+\textbf{WT: Torre branca} \linebreak\linebreak
+\textbf{N: Centro vazio} \linebreak\linebreak
+
+
+    \includegraphics[scale=0.9]{gameex1.png}\linebreak
+Figura 13: Estado inicial do tabuleiro visualizado na consola \linebreak\linebreak
+
+ \includegraphics[scale=0.9]{gameex2.png}\linebreak
+Figura 14: Possivel estado intermédio de jogo \linebreak\linebreak
+
+ \includegraphics[scale=0.9]{gameex3.png}\linebreak
+Figura 15: Possivel estado final de jogo com o centro capturado pelos brancos \linebreak\linebreak
+\end{center}
+
+
+\newpage
+\section{Movimentos}
+\subsection{Cabeçalho do predicado de movimentação de uma peça}
+movePiece(currentX, currentY, destX, destY)
 
 
 
