@@ -1,3 +1,5 @@
+include('auxiliar.pl').
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        BOARD DRAWING        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,7 +33,8 @@ printLine([]):-
 printLine([H|T]):-
 	write('|'),
 	write(' '),
-	write(H),
+	getSymbol(H, H1),
+	write(H1),
 	write(' '),
 	printLine(T).
 
@@ -114,55 +117,55 @@ printMorelli([H|T], I):-
 gameExample1(K) :-
 	K =
 	[
-	['P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', 'N ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'P ']
+	[black, black, black, black, black, black, black, black, black, black, black, black, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, emptyCenter, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, white, white, white, white, white, white, white, white, white, white, white, black]
 	].
 
 gameExample2(K) :-
 	K =
 	[
-	['P ', '  ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', '  ', 'P ', 'P ', 'P ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', 'P ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['  ', '  ', 'W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', 'N ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', 'W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P '],
-	['W ', 'W ', '  ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'P ']
+	[black, empty, black, black, black, black, black, black, empty, black, black, black, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, black, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, black, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[empty, empty, white, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, emptyCenter, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, white, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
+	[white, white, empty, white, white, white, white, white, white, white, white, white, black]
 	].
 
 gameExample3(K) :-
 	K =
 	[
-	['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-	['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-	['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', 'P ', '  ', '  ', '  ', '  '],
-	['  ', '  ', '  ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', '  ', '  ', '  ', '  '],
-	['  ', '  ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', 'P ', '  ', '  ', '  ', '  '],
-	['  ', '  ', '  ', 'P ', 'W ', 'W ', 'P ', 'W ', 'P ', '  ', '  ', '  ', '  '],
-	['  ', '  ', 'W ', 'P ', 'W ', 'W ', 'WT', 'P ', 'P ', '  ', '  ', '  ', '  '],
-	['  ', '  ', 'W ', 'P ', 'W ', 'W ', 'W ', 'P ', '  ', 'P ', '  ', '  ', '  '],
-	['  ', '  ', 'W ', 'W ', 'W ', 'W ', 'W ', 'W ', 'P ', 'W ', '  ', '  ', '  '],
-	['  ', '  ', '  ', 'P ', 'W ', 'W ', 'W ', 'W ', '  ', 'W ', '  ', '  ', '  '],
-	['  ', '  ', '  ', 'W ', '  ', '  ', '  ', '  ', 'W ', 'W ', '  ', '  ', '  '],
-	['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-	['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ']
+	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty],
+	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty],
+	[empty, empty, empty, empty, empty, empty, empty, empty, black, empty, empty, empty, empty],
+	[empty, empty, empty, black, black, black, black, black, black, empty, empty, empty, empty],
+	[empty, empty, black, black, black, black, black, black, black, empty, empty, empty, empty],
+	[empty, empty, empty, black, white, white, black, white, black, empty, empty, empty, empty],
+	[empty, empty, white, black, white, white, whiteTower, black, black, empty, empty, empty, empty],
+	[empty, empty, white, black, white, white, white, black, empty, black, empty, empty, empty],
+	[empty, empty, white, white, white, white, white, white, black, white, empty, empty, empty],
+	[empty, empty, empty, black, white, white, white, white, empty, white, empty, empty, empty],
+	[empty, empty, empty, white, empty, empty, empty, empty, white, white, empty, empty, empty],
+	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty],
+	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty]
 	].
 
 
@@ -170,10 +173,10 @@ gameExample3(K) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 startMorelli(I, S):-
-	addLine([H|T], I, S),
-	%gameExample2(K),
+	%addLine([H|T], I, S),
+	gameExample1(K),
 	printIndice(0,S),
 	write('  '),
 	printFirstDivisor(0, S),
-	printMorelli([H|T], 0).
+	printMorelli(K, 0).
 

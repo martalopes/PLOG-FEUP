@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  6 OCT 2015 18:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  6 OCT 2015 21:51
 entering extended mode
 **C:/Users/marta/Documents/GitHub/PLOG/Arquivo/template.tex
 (C:/Users/marta/Documents/GitHub/PLOG/Arquivo/template.tex
@@ -502,50 +502,83 @@ Overfull \hbox (1.64532pt too wide) in paragraph at lines 177--177
 []\T1/cmr/bx/n/14.4 Representação e vi-su-a-li-za-ção do Es-tado de Jogo 
  []
 
-<gameex1.png, id=63, 438.8897pt x 306.39468pt>
+<gameex1rep.png, id=63, 596.98032pt x 206.27063pt>
+File: gameex1rep.png Graphic file (type png)
+ <use gameex1rep.png>
+Package pdftex.def Info: gameex1rep.png used on input line 190.
+(pdftex.def)             Requested size: 507.43565pt x 175.33084pt.
+
+Overfull \hbox (105.53015pt too wide) in paragraph at lines 190--191
+ | [] 
+ []
+
+<gameex1.png, id=64, 436.63126pt x 277.035pt>
 File: gameex1.png Graphic file (type png)
  <use gameex1.png>
-Package pdftex.def Info: gameex1.png used on input line 189.
-(pdftex.def)             Requested size: 394.99707pt x 275.75267pt.
+Package pdftex.def Info: gameex1.png used on input line 192.
+(pdftex.def)             Requested size: 392.9645pt x 249.3292pt.
 
-Overfull \hbox (49.99707pt too wide) in paragraph at lines 189--191
+Overfull \hbox (47.9645pt too wide) in paragraph at lines 192--194
  [][] 
  []
 
-<gameex2.png, id=64, 444.91219pt x 294.34969pt>
+[9 <./gameex1rep.png> <./gameex1.png>]
+<gameex2rep.png, id=70, 599.99156pt x 203.25937pt>
+File: gameex2rep.png Graphic file (type png)
+ <use gameex2rep.png>
+Package pdftex.def Info: gameex2rep.png used on input line 198.
+(pdftex.def)             Requested size: 509.99524pt x 172.77127pt.
+
+<gameex2.png, id=71, 431.36156pt x 278.54062pt>
 File: gameex2.png Graphic file (type png)
  <use gameex2.png>
-Package pdftex.def Info: gameex2.png used on input line 192.
-(pdftex.def)             Requested size: 400.41725pt x 264.91225pt.
+Package pdftex.def Info: gameex2.png used on input line 199.
+(pdftex.def)             Requested size: 388.22182pt x 250.68423pt.
 
-Overfull \hbox (55.41725pt too wide) in paragraph at lines 192--194
- [][] 
+Overfull \hbox (108.08974pt too wide) in paragraph at lines 198--200
+ | [] 
  []
 
-[9 <./gameex1.png>] <gameex3.png, id=69, 450.9347pt x 296.60812pt>
+
+Overfull \hbox (43.22182pt too wide) in paragraph at lines 198--200
+ [] 
+ []
+
+[10 <./gameex2rep.png> <./gameex2.png>]
+<gameex3rep.png, id=77, 597.73312pt x 204.01219pt>
+File: gameex3rep.png Graphic file (type png)
+ <use gameex3rep.png>
+Package pdftex.def Info: gameex3rep.png used on input line 205.
+(pdftex.def)             Requested size: 508.07555pt x 173.41118pt.
+
+<gameex3.png, id=78, 420.82219pt x 279.29344pt>
 File: gameex3.png Graphic file (type png)
+ <use gameex3.png>
+Package pdftex.def Info: gameex3.png used on input line 206.
+(pdftex.def)             Requested size: 378.73647pt x 251.36177pt.
 
-<use gameex3.png>
-Package pdftex.def Info: gameex3.png used on input line 195.
-(pdftex.def)             Requested size: 405.83748pt x 266.94484pt.
-
-Overfull \hbox (60.83748pt too wide) in paragraph at lines 195--197
- [][] 
+Overfull \hbox (106.17004pt too wide) in paragraph at lines 205--208
+ | [] 
  []
 
-[10 <./gameex2.png> <./gameex3.png>]
-Overfull \hbox (2.44977pt too wide) in paragraph at lines 202--202
+
+Overfull \hbox (33.73647pt too wide) in paragraph at lines 205--208
+ [] 
+ []
+
+[11 <./gameex3rep.png> <./gameex3.png>]
+Overfull \hbox (2.44977pt too wide) in paragraph at lines 213--213
 []\T1/cmr/bx/n/12 Cabeçalho do pre-di-cado de mo-vi-men-ta-ção de uma peça 
  []
 
 
 AED: lastpage setting LastPage
-[11] (template.aux) ) 
+[12] (template.aux) ) 
 Here is how much of TeX's memory you used:
- 4103 strings out of 493673
- 54488 string characters out of 3141530
+ 4118 strings out of 493673
+ 54755 string characters out of 3141530
  216112 words of memory out of 3000000
- 7383 multiletter control sequences out of 15000+200000
+ 7395 multiletter control sequences out of 15000+200000
  13998 words of font info for 33 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  27i,7n,43p,522b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -560,9 +593,9 @@ k> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
 ecbx1440.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
 ec\dpi600\ecbx2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb>
-Output written on template.pdf (11 pages, 1328223 bytes).
+Output written on template.pdf (12 pages, 1356880 bytes).
 PDF statistics:
- 349 PDF objects out of 1000 (max. 8388607)
+ 360 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
