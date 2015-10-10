@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  6 OCT 2015 21:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  10 OCT 2015 15:50
 entering extended mode
-**C:/Users/marta/Documents/GitHub/PLOG/Arquivo/template.tex
-(C:/Users/marta/Documents/GitHub/PLOG/Arquivo/template.tex
+**C:/Users/marta/Documents/GitHub/PLOG/report1/firstreport.tex
+(C:/Users/marta/Documents/GitHub/PLOG/report1/firstreport.tex
 LaTeX2e <2015/01/01> patch level 2
 Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -364,7 +364,8 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) (template.aux)
+))
+(firstreport.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
@@ -377,7 +378,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
- (C:\Users\marta\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+
+(C:\Users\marta\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count98
 \scratchdimen=\dimen110
@@ -410,7 +412,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 {C:/Users/marta/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./feup-logo
 .png>]
-(template.toc
+(firstreport.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -419,18 +421,20 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
  [2] <fig1.png, id=18, 232.61906pt x 173.14688pt>
 File: fig1.png Graphic file (type png)
- <use fig1.png>
+
+<use fig1.png>
 Package pdftex.def Info: fig1.png used on input line 107.
 (pdftex.def)             Requested size: 209.35521pt x 155.83075pt.
-
-[3 <./fig1.png>]
+ [3 <./fig1.png>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 116.
 
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
+
 <fig2.png, id=24, 229.60782pt x 171.64125pt>
 File: fig2.png Graphic file (type png)
  <use fig2.png>
@@ -566,36 +570,72 @@ Overfull \hbox (33.73647pt too wide) in paragraph at lines 205--208
  [] 
  []
 
+<code1.png, id=79, 215.30438pt x 330.48468pt>
+File: code1.png Graphic file (type png)
+ <use code1.png>
+Package pdftex.def Info: code1.png used on input line 212.
+(pdftex.def)             Requested size: 215.30385pt x 330.48387pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
+
+ []
+
 [11 <./gameex3rep.png> <./gameex3.png>]
-Overfull \hbox (2.44977pt too wide) in paragraph at lines 213--213
+<code2.png, id=85, 309.40594pt x 137.7647pt>
+File: code2.png Graphic file (type png)
+ <use code2.png>
+Package pdftex.def Info: code2.png used on input line 215.
+(pdftex.def)             Requested size: 309.40518pt x 137.76434pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+
+ []
+
+[12 <./code1.png> <./code2.png>]
+Overfull \hbox (2.44977pt too wide) in paragraph at lines 219--219
 []\T1/cmr/bx/n/12 Cabeçalho do pre-di-cado de mo-vi-men-ta-ção de uma peça 
  []
 
 
 AED: lastpage setting LastPage
-[12] (template.aux) ) 
+[13] (firstreport.aux) ) 
 Here is how much of TeX's memory you used:
- 4118 strings out of 493673
- 54755 string characters out of 3141530
+ 4128 strings out of 493673
+ 54919 string characters out of 3141530
  216112 words of memory out of 3000000
- 7395 multiletter control sequences out of 15000+200000
+ 7403 multiletter control sequences out of 15000+200000
  13998 words of font info for 33 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,7n,43p,522b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-jknappen\ec\dpi600\ecti1000.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\
-pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\marta\AppData\Local\MiKTeX\
-2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\marta\AppData\Loc
-al\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\marta\A
-ppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Use
-rs\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.p
-k> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
-ecbx1440.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecbx2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb>
-Output written on template.pdf (12 pages, 1356880 bytes).
+ 27i,7n,43p,525b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
+ur\jknappen\ec\dpi600\ecti1000.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fon
+ts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\marta\AppData\Local\MiKT
+eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\marta\AppData\
+Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\mart
+a\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\
+Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm144
+0.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
+00\ecbx1440.pk> <C:\Users\marta\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknapp
+en\ec\dpi600\ecbx2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb>
+Output written on firstreport.pdf (13 pages, 1370988 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
+ 368 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

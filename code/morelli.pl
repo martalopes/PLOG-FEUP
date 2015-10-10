@@ -4,19 +4,20 @@ include('auxiliar.pl').
 %        BOARD DRAWING        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%Adding a New Line%%%%%%%%%
+%%%%--Creating a New Line--%%%%
 
-addLine(_, A, A).
+addLine(_, A, A).  %stop condition
 
 addLine([H|T], I, S):-
 	I1 is I+1,
-	fillLine(H, 0, S),
+	fillLine(H, 0, S),	
 	addLine(T, I1, S). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%Fills Line%%%%%%%%%%%
-fillLine(_, A,A).
+%%%%%%%%--Fills Line--%%%%%%%%%
+
+fillLine(_, A,A). %stop condition
 
 fillLine([H|T], I, S):-
 	I1 is I+1,
@@ -25,7 +26,7 @@ fillLine([H|T], I, S):-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%Prints Line%%%%%%%%%%%
+%%%%%%%--Prints Line--%%%%%%%%%
 
 printLine([]):-
 	write('|').
@@ -103,9 +104,8 @@ printIndice(I,S):-
 printMorelli([], _).
 
 printMorelli([H|T], I):-
-	printIndiceV(I),
-	
-	printLine(H), nl,
+	printIndiceV(I), %prints vertical indice
+	printLine(H), nl, 
 	write('  '),
 	printDivisor(H), nl,
 	I1 is I+1,
@@ -171,12 +171,12 @@ gameExample3(K) :-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-startMorelli(I, S):-
-	%addLine([H|T], I, S),
-	gameExample1(K),
-	printIndice(0,S),
+%%%%%%%--Main Function--%%%%%%%
+startMorelli(I, S):- %I is zero, S is board size
+	addLine([H|T], I, S),
+	%gameExample1(K),
+	printIndice(0,S), %prints horizontal indice
 	write('  '),
-	printFirstDivisor(0, S),
-	printMorelli(K, 0).
+	printFirstDivisor(0, S), %prints first divisor
+	printMorelli([H|T], 0). %prints board
 
