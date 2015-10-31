@@ -1,4 +1,7 @@
-%include('auxiliar.pl').
+:- use_module(library(random)).
+:- include('auxiliar.pl').
+:- include('menu.pl').
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        BOARD DRAWING        %
@@ -6,23 +9,57 @@
 
 %%%%--Creating a New Line--%%%%
 
-addLine(_, A, A).  %stop condition
+addLine(_, Max, Max, _).  %stop condition
 
-addLine([H|T], I, S):-
+addLine([H|T], 0, BoardSize, [Y|Z]):-		%adds the first line with random piece
+	fillFirstLine(H, 0, BoardSize, [Y|Z]),
+	addLine(T, 1, BoardSize, [Y|Z]). 
+
+addLine([H|T], I, BoardSize, [Y|Z]):-		%adds the last line which is the reverse of the first
+	I+1=:=BoardSize,
+	fillLastLine(H, 0, BoardSize, [Y|Z]).
+
+addLine([H|T], I, BoardSize, [Y|Z]):-		%fills the middle lines
 	I1 is I+1,
-	fillLine(H, 0, S),	
-	addLine(T, I1, S). 
+	firstPiece(H, 0, BoardSize),
+	addLine(T, I1, BoardSize, [Y|Z]). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%--Fills Line--%%%%%%%%%
+fillFirstLine(_, A,A,_). %stop condition
 
-fillLine(_, A,A). %stop condition
-
-fillLine([H|T], I, S):-
+fillFirstLine([H|T], I, BoardSize, [Y|Z]):-
 	I1 is I+1,
-	H = '  ',
-	fillLine(T, I1, S).
+	random(1, 3, H1),
+	H = H1,
+	reverseColor(H2,H1),
+	Y = H2,
+	fillFirstLine(T, I1, BoardSize, Z).
+
+fillLastLine(_, A,A, _). %stop condition
+
+fillLastLine([H|T], I, BoardSize, [Y|Z]):-
+	I1 is I+1,
+	H = Y,
+	fillLastLine(T, I1, BoardSize, Z).
+
+firstPiece([H|T], I, BoardSize):-
+	random(1,3,First),
+	H = First,
+	fillLine(T, 1, BoardSize, First).
+
+fillLine(_, Max, Max, _).
+
+fillLine([H|T], I,BoardSize, First):-
+	I+1=:=BoardSize,
+	reverseColor(Last, First),
+	H = Last.
+
+fillLine([H|T], I, BoardSize, First):-
+	I1 is I+1,
+	H = 0,
+	fillLine(T, I1, BoardSize, First).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -34,8 +71,8 @@ printLine([]):-
 printLine([H|T]):-
 	write('|'),
 	write(' '),
-	%getSymbol(H, H1),
-	write('W '),
+	getSymbol(H, X),
+	write(X),
 	write(' '),
 	printLine(T).
 
@@ -55,11 +92,11 @@ printDivisor([H|T]):-
 printFirstDivisor(A,A):- 
 	write('|'),nl.
 
-printFirstDivisor(I, S):-
+printFirstDivisor(I, BoardSize):-
 	I1 is I+1,
 	write('|'),
 	write('----'),
-	printFirstDivisor(I1, S).
+	printFirstDivisor(I1, BoardSize).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -82,20 +119,20 @@ printIndiceV(I):-
 printIndice(A,A):- 
 	nl.
 
-printIndice(I,S):-
+printIndice(I,BoardSize):-
 	I < 10,
 	I1 is I+1,
 	write('    '),
 	write(I1),
 	write(''),
-	printIndice(I1, S).
+	printIndice(I1, BoardSize).
 
-printIndice(I,S):-
+printIndice(I,BoardSize):-
 	I > 9,
 	I1 is I+1,
 	write('   '),
 	write(I1),
-	printIndice(I1, S).
+	printIndice(I1, BoardSize).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -113,10 +150,11 @@ printMorelli([H|T], I):-
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%--Main Function--%%%%%%%
-startMorelli(I, S):- %I is zero, S is board size
-	addLine([H|T], I, S),
-	printIndice(0,S), %prints horizontal indice
+startMorelli(I, BoardSize):- %I is zero, S is board size
+	
+	addLine(Board, 0, BoardSize, AuxList),
+	printIndice(0,BoardSize), %prints horizontal indice
 	write('  '),
-	printFirstDivisor(0, S), %prints first divisor
-	printMorelli([H|T], 0). %prints board
+	printFirstDivisor(0, BoardSize), %prints first divisor
+	printMorelli(Board, 0). %prints board
 
