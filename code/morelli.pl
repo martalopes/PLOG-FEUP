@@ -1,4 +1,4 @@
-include('auxiliar.pl').
+%include('auxiliar.pl').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        BOARD DRAWING        %
@@ -34,8 +34,8 @@ printLine([]):-
 printLine([H|T]):-
 	write('|'),
 	write(' '),
-	getSymbol(H, H1),
-	write(H1),
+	%getSymbol(H, H1),
+	write('W '),
 	write(' '),
 	printLine(T).
 
@@ -112,69 +112,9 @@ printMorelli([H|T], I):-
 	printMorelli(T, I1).
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%Example%%%%%%%%%%%%%%
-gameExample1(K) :-
-	K =
-	[
-	[black, black, black, black, black, black, black, black, black, black, black, black, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, emptyCenter, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, white, white, white, white, white, white, white, white, white, white, white, black]
-	].
-
-gameExample2(K) :-
-	K =
-	[
-	[black, empty, black, black, black, black, black, black, empty, black, black, black, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, black, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, black, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[empty, empty, white, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, emptyCenter, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, white, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, black],
-	[white, white, empty, white, white, white, white, white, white, white, white, white, black]
-	].
-
-gameExample3(K) :-
-	K =
-	[
-	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty],
-	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty],
-	[empty, empty, empty, empty, empty, empty, empty, empty, black, empty, empty, empty, empty],
-	[empty, empty, empty, black, black, black, black, black, black, empty, empty, empty, empty],
-	[empty, empty, black, black, black, black, black, black, black, empty, empty, empty, empty],
-	[empty, empty, empty, black, white, white, black, white, black, empty, empty, empty, empty],
-	[empty, empty, white, black, white, white, whiteTower, black, black, empty, empty, empty, empty],
-	[empty, empty, white, black, white, white, white, black, empty, black, empty, empty, empty],
-	[empty, empty, white, white, white, white, white, white, black, white, empty, empty, empty],
-	[empty, empty, empty, black, white, white, white, white, empty, white, empty, empty, empty],
-	[empty, empty, empty, white, empty, empty, empty, empty, white, white, empty, empty, empty],
-	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty],
-	[empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty, empty]
-	].
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%--Main Function--%%%%%%%
 startMorelli(I, S):- %I is zero, S is board size
 	addLine([H|T], I, S),
-	%gameExample1(K),
 	printIndice(0,S), %prints horizontal indice
 	write('  '),
 	printFirstDivisor(0, S), %prints first divisor
