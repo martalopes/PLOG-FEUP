@@ -105,14 +105,14 @@ printFirstDivisor(I, BoardSize):-
 
 printIndiceV(I):-
 	I1 is I+1,
-	I1 < 10,
+	I1 < 11,
 	write(' '),
-	write(I1).
+	write(I).
 
 printIndiceV(I):-
 	I1 is I+1,
-	I1 > 9,
-	write(I1).
+	I1 > 10,
+	write(I).
 
 
 %%%Prints Horizontal Indice %%%%
@@ -121,18 +121,17 @@ printIndice(A,A):-
 	nl.
 
 printIndice(I,BoardSize):-
-	I < 10,
+	I < 11,
 	I1 is I+1,
 	write('    '),
-	write(I1),
-	write(''),
+	write(I),
 	printIndice(I1, BoardSize).
 
 printIndice(I,BoardSize):-
-	I > 9,
+	I > 10,
 	I1 is I+1,
 	write('   '),
-	write(I1),
+	write(I),
 	printIndice(I1, BoardSize).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,5 +159,5 @@ startDrawingBoard(I, BoardSize):-
 	write('  '),
 	printFirstDivisor(0, BoardSize), %prints first divisor
 	printMorelli(Board, 0), %prints board
-	validInput(1,1,3,2, Board).
+	validInput(12,2,0,2, Board).
 

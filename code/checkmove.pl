@@ -1,130 +1,141 @@
-level(1, purple).
-level(2, blue).
-level(3, green).
-level(4, yellow).
-level(5, orange).
-level(6, red).
 
-validMove(X,X, dr).   %% down right
-validMove(-X,-X, ul). %% up left
-validMove(-X,X, dl).  %% down left
-validMove(X,-X, ur).  %% up right
-validMove(X,0, r).   %% right
-validMove(0,X, d).   %% down
-validMove(-X,0, l).  %% left
-validMove(0,-X, u).  %% up
+validMove(X,X, dr):-   %% down right
+  	X > 0.
+
+validMove(X,X, ul):- %% up left
+	X < 0.
+
+validMove(X1,X, dl):-  %% down left
+	X1 =:= abs(X),
+	X1 > 0,
+	X < 0.
+
+validMove(X1,X, ur):- %% up right
+	X =:= abs(X1),
+	X1 < 0,
+	X > 0.
+
+validMove(0,X, r):-  %% right
+	X > 0.
+
+validMove(0, X, l):-  %% left
+	X < 0.
+
+validMove(X,0, d):-   %% down
+	X > 0.
+
+validMove(X,0, u):-  %% up
+	X < 0.
 
 
-calculateLevel(X,Y, Level):-
-	DeltaX is 7-X,
-	DeltaY is 7-Y,
-	Level is max(DeltaX, DeltaY),
-	level(Level, Color).
+calculateLevel(Row,Col, Level):-
+	DeltaRow is abs(6-Row),
+	DeltaCol is abs(6-Col),
+	Level is max(DeltaRow, DeltaCol).
 
-searchVector(_,_,X,X,X,dr,_).
+searchVector(_,_,X,X,X1,dr,_):-
+	X1 =:= X.
 
-searchVector(CurrX, CurrY, DeltaX, DeltaY, It, dr, Board):-
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, dr, Board):-
 	It1 is It + 1,
-	It1 =< DeltaX,
-	It1 =< DeltaY,
-	NewCurrX = CurrX + 1,
-	NewCurrY = CurrY + 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaRow),
+	It1 =< abs(DeltaCol),
+	NewCurrRow = CurrRow + 1,
+	NewCurrCol = CurrCol + 1,
+	getMatrixElemAt(NewCurrRow, NewCurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, dr, Board).
-	
+	searchVector(NewCurrRow, NewCurrCol, DeltaRow, DeltaCol, It1, dr, Board).
 
-searchVector(_,_,X,X,Y,ul,_):-
-	Y is abs(X).
+searchVector(_,_,X,X,X1,ul,_):-
+	X1 =:= abs(X).
 	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, It, ul, Board):-
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, ul, Board):-
 	It1 is It + 1,
-	It1 =< DeltaX,
-	It1 =< DeltaY,
-	NewCurrX = CurrX - 1,
-	NewCurrY = CurrY - 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaRow),
+	It1 =< abs(DeltaCol),
+	NewCurrRow = CurrRow - 1,
+	NewCurrCol = CurrCol - 1,
+	getMatrixElemAt(NewCurrRow, NewCurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, ul, Board).
+	searchVector(NewCurrRow, NewCurrCol, DeltaRow, DeltaCol, It1, ul, Board).
 
-searchVector(_,_,X,Y,Y,dl,_):-
-	Y is abs(X).
-	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, It, dl, Board):-
+searchVector(_,_,X1,X,X1,dl,_):-
+	X1 =:= abs(X).
+		
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, dl, Board):-
 	It1 is It + 1,
-	It1 =< DeltaX,
-	It1 =< DeltaY,
-	NewCurrX = CurrX - 1,
-	NewCurrY = CurrY + 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaRow),
+	It1 =< abs(DeltaCol),
+	NewCurrRow = CurrRow + 1,
+	NewCurrCol = CurrCol - 1,
+	getMatrixElemAt(NewCurrRow, NewCurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, dl, Board).
+	searchVector(NewCurrRow, NewCurrCol, DeltaRow, DeltaCol, It1, dl, Board).
 
-searchVector(_,_,Y,X,Y,ur,_):-
-	Y is abs(X).
-	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, It, ur, Board):-
+searchVector(_,_,X1,X,X,ur,_):-
+	X =:= abs(X1).
+
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, ur, Board):-
 	It1 is It + 1,
-	It1 =< DeltaX,
-	It1 =< DeltaY,
-	NewCurrX = CurrX + 1,
-	NewCurrY = CurrY - 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaRow),
+	It1 =< abs(DeltaCol),
+	NewCurrRow = CurrRow - 1,
+	NewCurrCol = CurrCol + 1,
+	getMatrixElemAt(NewCurrRow, NewCurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, ur, Board).
-
-searchVector(_,_,Y,_,Y,r,_).
+	searchVector(NewCurrRow, NewCurrCol, DeltaRow, DeltaCol, It1, ur, Board).
 	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, It,  r, Board):-
+searchVector(_,_,0,X,X,r,_).
+
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It,  r, Board):-
 	It1 is It + 1,
-	It1 =< DeltaX,
-	NewCurrX = CurrX + 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaCol),
+	NewCurrCol = CurrCol + 1,
+	getMatrixElemAt(CurrRow, NewCurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, r, Board).
-
-searchVector(_,_,_,Y,Y,d,_).
+	searchVector(CurrRow, NewCurrCol, DeltaRow, DeltaCol, It1, r, Board).
 	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, It, d, Board):-
+searchVector(_,_,0,X1,X,l,_):-
+	X =:= abs(X1).
+
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, l, Board):-
 	It1 is It + 1,
-	It1 =< DeltaY,
-	NewCurrY = CurrY + 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaCol),
+	NewCurrCol = CurrCol - 1,
+	getMatrixElemAt(CurrRow, NewCurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, d, Board).
+	searchVector(CurrRow, NewCurrCol, DeltaRow, DeltaCol, It1, l, Board).
 
-searchVector(_,_,X,_,Y,l,_):-
-	Y is abs(X).
-	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, l, Board):-
+searchVector(_,_,X,0,X,d,_).
+
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, d, Board):-
 	It1 is It + 1,
-	It1 =< DeltaX,
-	NewCurrX = CurrX - 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaRow),
+	NewCurrRow = CurrRow + 1,
+	getMatrixElemAt(NewCurrRow, CurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, l, Board).
+	searchVector(NewCurrRow, CurrCol, DeltaRow, DeltaCol, It1, d, Board).
 
-searchVector(_,_,_,X,Y,u,_):-
-	Y is abs(X).
-	
-searchVector(CurrX, CurrY, DeltaX, DeltaY, u, Board):-
+searchVector(_,_,X1,0,X,u,_):-
+	X =:= abs(X1).
+
+searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, u, Board):-
 	It1 is It + 1,
-	It1 =< DeltaY,
-	NewCurrY = CurrY - 1,
-	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	It1 =< abs(DeltaRow),
+	NewCurrRow = CurrRow - 1,
+	getMatrixElemAt(NewCurrRow, CurrCol, Board, Elem),
 	Elem =:= 0,
-	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, l, Board).
-	
+	searchVector(NewCurrRow, CurrCol, DeltaRow, DeltaCol, It1, u, Board).
 
 
-validInput(CurrX,CurrY, DestX, DestY, Board):-
-	calculateLevel(CurrX, CurrY, CurrLevel),
-	calculateLevel(DestX, DestY, DestLevel),
+validInput(CurrRow,CurrCol, DestRow, DestCol, Board):-
+	calculateLevel(CurrRow, CurrCol, CurrLevel),
+	calculateLevel(DestRow, DestCol, DestLevel),
 	CurrLevel > DestLevel,
-	DeltaX is DestX - CurrX,
-	DeltaY is DestY - CurrY,
-	validMove(DeltaX, DeltaY, VecDirection),
-	searchVector(CurrX, CurrY, DeltaX, DeltaY, 1, VecDirection, Board),
+	DeltaRow is DestRow - CurrRow,
+	DeltaCol is DestCol - CurrCol,
+	validMove(DeltaRow, DeltaCol, VecDirection),
+	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board),
 	write('valid').
 
 validInput(_,_,_,_,_):-write('Not a valid move!').
