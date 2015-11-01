@@ -160,5 +160,5 @@ startDrawingBoard(I, BoardSize):-
 	write('  '),
 	printFirstDivisor(0, BoardSize), %prints first divisor
 	printMorelli(Board, 0), %prints board
-	validInput(1,1,2,2, Board).
+	validInput(1,1,3,2, Board).
 

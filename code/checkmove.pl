@@ -21,6 +21,7 @@ calculateLevel(X,Y, Level):-
 	Level is max(DeltaX, DeltaY),
 	level(Level, Color).
 
+searchVector(_,_,X,X,X,dr,_).
 
 searchVector(CurrX, CurrY, DeltaX, DeltaY, It, dr, Board):-
 	It1 is It + 1,
