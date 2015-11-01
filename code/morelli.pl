@@ -1,6 +1,7 @@
 :- use_module(library(random)).
 :- include('auxiliar.pl').
 :- include('menu.pl').
+:- include('checkmove.pl').
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -150,11 +151,14 @@ printMorelli([H|T], I):-
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%--Main Function--%%%%%%%
-startMorelli(I, BoardSize):- %I is zero, S is board size
-	
+startMorelli:- %I is zero, S is board size
+	mainMenu.
+
+startDrawingBoard(I, BoardSize):-
 	addLine(Board, 0, BoardSize, AuxList),
 	printIndice(0,BoardSize), %prints horizontal indice
 	write('  '),
 	printFirstDivisor(0, BoardSize), %prints first divisor
-	printMorelli(Board, 0). %prints board
+	printMorelli(Board, 0), %prints board
+	validInput(1,1,2,2, Board).
 
