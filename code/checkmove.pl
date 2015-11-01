@@ -34,20 +34,86 @@ searchVector(CurrX, CurrY, DeltaX, DeltaY, It, dr, Board):-
 	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, dr, Board).
 	
 
+searchVector(_,_,X,X,Y,ul,_):-
+	Y is abs(X).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, It, ul, Board):-
+	It1 is It + 1,
+	It1 =< DeltaX,
+	It1 =< DeltaY,
+	NewCurrX = CurrX - 1,
+	NewCurrY = CurrY - 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, ul, Board).
 
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, It, ul, Board):-
+searchVector(_,_,X,Y,Y,dl,_):-
+	Y is abs(X).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, It, dl, Board):-
+	It1 is It + 1,
+	It1 =< DeltaX,
+	It1 =< DeltaY,
+	NewCurrX = CurrX - 1,
+	NewCurrY = CurrY + 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, dl, Board).
 
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, It, dl, Board):-
+searchVector(_,_,Y,X,Y,ur,_):-
+	Y is abs(X).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, It, ur, Board):-
+	It1 is It + 1,
+	It1 =< DeltaX,
+	It1 =< DeltaY,
+	NewCurrX = CurrX + 1,
+	NewCurrY = CurrY - 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, ur, Board).
 
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, It, ur, Board):-
+searchVector(_,_,Y,_,Y,r,_).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, It,  r, Board):-
+	It1 is It + 1,
+	It1 =< DeltaX,
+	NewCurrX = CurrX + 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, r, Board).
 
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, It,  r, Board):--
+searchVector(_,_,_,Y,Y,d,_).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, It, d, Board):-
+	It1 is It + 1,
+	It1 =< DeltaY,
+	NewCurrY = CurrY + 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, d, Board).
 
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, It, d, Board):-
+searchVector(_,_,X,_,Y,l,_):-
+	Y is abs(X).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, l, Board):-
+	It1 is It + 1,
+	It1 =< DeltaX,
+	NewCurrX = CurrX - 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, l, Board).
 
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, l, Board):-
-
-%searchVector(CurrX, CurrY, DeltaX, DeltaY, u, Board):-
+searchVector(_,_,_,X,Y,u,_):-
+	Y is abs(X).
+	
+searchVector(CurrX, CurrY, DeltaX, DeltaY, u, Board):-
+	It1 is It + 1,
+	It1 =< DeltaY,
+	NewCurrY = CurrY - 1,
+	getMatrixElemAt(NewCurrX, NewCurrY, Board, Elem),
+	Elem =:= 0,
+	searchVector(NewCurrX, NewCurrY, DeltaX, DeltaY, It1, l, Board).
 	
 
 
@@ -58,7 +124,7 @@ validInput(CurrX,CurrY, DestX, DestY, Board):-
 	DeltaX is DestX - CurrX,
 	DeltaY is DestY - CurrY,
 	validMove(DeltaX, DeltaY, VecDirection),
-	searchVector(CurrX, CurrY, DeltaX, DeltaY, 0, VecDirection, Board),
+	searchVector(CurrX, CurrY, DeltaX, DeltaY, 1, VecDirection, Board),
 	write('valid').
 
 validInput(_,_,_,_,_):-write('Not a valid move!').
