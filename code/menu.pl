@@ -52,7 +52,8 @@ gameMenu:-
 	).
 
 startPvsP:-
-	clearScreen(40).
+	clearScreen(40),
+	playGamePvP(_, blackPlayer).
 
 %startPvsB:-
 %	startPvsBGame(Game),

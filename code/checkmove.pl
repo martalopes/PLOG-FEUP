@@ -127,7 +127,6 @@ searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, u, Board):-
 	Elem =:= 0,
 	searchVector(NewCurrRow, CurrCol, DeltaRow, DeltaCol, It1, u, Board).
 
-
 validInput(CurrRow,CurrCol, DestRow, DestCol, Board):-
 	calculateLevel(CurrRow, CurrCol, CurrLevel),
 	calculateLevel(DestRow, DestCol, DestLevel),
@@ -136,23 +135,24 @@ validInput(CurrRow,CurrCol, DestRow, DestCol, Board):-
 	DeltaCol is DestCol - CurrCol,
 	validMove(DeltaRow, DeltaCol, VecDirection),
 	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board),
-	write('valid').
-
-validInput(_,_,_,_,_):-write('Not a valid move!').
+	write('valid'),nl,nl.
 
 
-%%% 1. element row; 2. element column; 3. matrix; 4. query element.
-getMatrixElemAt(0, ElemCol, [ListAtTheHead|_], Elem):-
-	getListElemAt(ElemCol, ListAtTheHead, Elem).
 
-getMatrixElemAt(ElemRow, ElemCol, [_|RemainingLists], Elem):-
-	ElemRow > 0,
-	ElemRow1 is ElemRow-1,
-	getMatrixElemAt(ElemRow1, ElemCol, RemainingLists, Elem).
+validInput(_,_,_,_,_):-
+	write('Not a valid move!'),
+	fail.
 
-%%% 1. element position; 2. list; 3. query element.
-getListElemAt(0, [ElemAtTheHead|_], ElemAtTheHead).
-getListElemAt(Pos, [_|RemainingElems], Elem):-
-	Pos > 0,
-	Pos1 is Pos-1,
-	getListElemAt(Pos1, RemainingElems, Elem).
+
+noMovement(CurrRow,CurrCol, DestRow, DestCol, Board):-
+	calculateLevel(CurrRow, CurrCol, CurrLevel),
+	calculateLevel(DestRow, DestCol, DestLevel),
+	CurrLevel > DestLevel,
+	DeltaRow is DestRow - CurrRow,
+	DeltaCol is DestCol - CurrCol,
+	validMove(DeltaRow, DeltaCol, VecDirection),
+	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board),
+	write('valid'),nl,nl.
+
+noMovement(_,_,_,_,_):-
+	fail.
