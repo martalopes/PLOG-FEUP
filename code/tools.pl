@@ -58,33 +58,38 @@ setListElemAtWith(I, Elem, [H|L], [H|ResL]):-
 
 
 
-checkEnd(_, Max, Max, Max, End,_):-
-	End is 1.
 
-checkEnd(Board, Row, Max, Max, End,_):-
-	Row2 is Row + 1,
+checkEnd(Board, Row, Max, Max):-
+	Row2 is Row + 1, 
 	checkEnd(Board, Row2, 0, Max).
 
-checkEnd(Board, Row, Col, Max, End, Piece):-
+
+checkEnd(Board, Row, Col, Max):-
 	RowPlus is Row + 1,
 	RowMinus is Row - 1,
 	ColPlus is Col + 1,
 	ColMinus is Col - 1,
-	getMatrixElemAt(Row, Col, Board, PieceTest),
-	(Piece \= PieceTest -> checkEnd(Board, Row, ColPlus, Max, End, Piece); true),
-	noMovement(Row, Col, RowPlus, Col, Board),
-	noMovement(Row, Col, RowMinus, Col, Board),
-	noMovement(Row, Col, Row, ColPlus, Board),
-	noMovement(Row, Col, Row, ColMinus, Board),
-	noMovement(Row, Col, RowPlus, ColPlus, Board),
-	noMovement(Row, Col, RowPlus, ColMinus, Board),
-	noMovement(Row, Col, RowMinus, ColPlus, Board),
-	noMovement(Row, Col, RowMinus, ColMinus, Board),
-	Col2 is Col + 1,
-	checkEnd(Board1, Row, Col2, Max, End, Piece).
 
-checkEnd(_,_,_,_,End):-
-	End is 0.
+	%getMatrixElemAt(Row, Col, Board, Elem),
+	%(Elem =:= 0 -> checkEnd(Board, Row, ColPlus, Max); true),
+
+	%getMatrixElemAt(Row, Col, Board, PieceTest),
+	%(Piece \= PieceTest -> checkEnd(Board, Row, ColPlus, Max, End, Piece); true),
+	noMovement(Row, Col, RowPlus, Col, Board), 
+	noMovement(Row, Col, RowMinus, Col, Board), 
+	noMovement(Row, Col, Row, ColPlus, Board), 
+	noMovement(Row, Col, Row, ColMinus, Board), 
+	noMovement(Row, Col, RowPlus, ColPlus, Board), 
+	noMovement(Row, Col, RowPlus, ColMinus, Board), 
+	noMovement(Row, Col, RowMinus, ColPlus, Board), 
+	noMovement(Row, Col, RowMinus, ColMinus, Board), 
+	checkEnd(Board, Row, ColPlus, Max).
+
+checkEnd(_, Max, Max, Max):-
+	!, fail.
+
+checkEnd(_,_,_,_):- fail.
+
 
 
 

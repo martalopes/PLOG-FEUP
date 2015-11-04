@@ -4,7 +4,23 @@
 :- include('checkmove.pl').
 :- include('checkcapture.pl').
 
-
+gameExample(K) :-
+	K =
+	[
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+	[0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+	[0, 0, 0, 1, 2, 2, 1, 2, 1, 0, 0, 0, 0],
+	[0, 0, 2, 1, 2, 2, 4, 1, 1, 0, 0, 0, 0],
+	[0, 0, 2, 1, 2, 2, 2, 1, 0, 1, 0, 0, 0],
+	[0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 0],
+	[0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0],
+	[0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        BOARD DRAWING        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,22 +185,23 @@ startDrawingBoard(_, BoardSize, Board1):-
 
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
-	startDrawingBoard(0,13, Board),
+	%startDrawingBoard(0,13, Board),
+	gameExample(Board),
 	setMatrixElemAtWith(6, 6, -1, Board, Board1),
-	getPlayerInput(Board1,Player).
+	getPlayerInput(Board1, Player).
 
 getPlayerInput(Board,Player):-
 	printMorelli(Board, 0, 13),
+	%checkEnd(Board, 4, 3, 8),
 	printMessage(Player),
 	getPieceCoords(Board, Player, CurrRow, CurrCol),
 	getDestCoords(Board, Player, CurrRow, CurrCol, _, _).%%%ALTERADO!!!!!!!!!pcausa de singletons
 
+getPlayerInput(_,_).
 
 
 getPieceCoords(Board, Player, CurrRow, CurrCol):-
 	%getPlayerColor(Player, Piece2),
-	%checkEnd(Board, 0, 0, 13, End, Piece2),
-	%(End =:= 1 -> write('END OF GAME'); true),
 	write('Piece row? (example: 1.)'), nl,
 	read(CurrRow),nl,
 	write('Piece col? (example: 1.)'), nl,
@@ -208,6 +225,8 @@ getDestCoords(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
 	setMatrixElemAtWith(CurrRow, CurrCol, 0, Board1, Board2),
 	checkCapture(DestRow, DestCol, Piece, Board2, Board3),
 	checkCenter(DestRow, DestCol, Piece, Board3, Board4),
+	%checkEnd(Board, 1, 1, 11, End),% Piece2),
+	%(End =:= 1 -> write('END OF GAME'); true),
 	switchPlayer(NextPlayer, Player),
 	getPlayerInput(Board4, NextPlayer).
 	

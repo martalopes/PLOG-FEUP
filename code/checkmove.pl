@@ -144,15 +144,13 @@ validInput(_,_,_,_,_):-
 	fail.
 
 
-noMovement(CurrRow,CurrCol, DestRow, DestCol, Board):-
+noMovement(CurrRow, CurrCol, DestRow, DestCol, Board):-
 	calculateLevel(CurrRow, CurrCol, CurrLevel),
 	calculateLevel(DestRow, DestCol, DestLevel),
 	CurrLevel > DestLevel,
 	DeltaRow is DestRow - CurrRow,
 	DeltaCol is DestCol - CurrCol,
 	validMove(DeltaRow, DeltaCol, VecDirection),
-	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board),
-	write('valid'),nl,nl.
+	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board), fail.
 
-noMovement(_,_,_,_,_):-
-	fail.
+noMovement(_,_,_,_,_).
