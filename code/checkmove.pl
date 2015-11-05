@@ -151,6 +151,7 @@ noMovement(CurrRow, CurrCol, DestRow, DestCol, Board):-
 	DeltaRow is DestRow - CurrRow,
 	DeltaCol is DestCol - CurrCol,
 	validMove(DeltaRow, DeltaCol, VecDirection),
-	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board), fail.
+	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board), !,fail. 
 
-noMovement(_,_,_,_,_).
+noMovement(_,_,_,_,_):- true.
+

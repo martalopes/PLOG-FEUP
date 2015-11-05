@@ -187,17 +187,29 @@ startDrawingBoard(_, BoardSize, Board1):-
 playGamePvP(Board,Player):-
 	%startDrawingBoard(0,13, Board),
 	gameExample(Board),
-	setMatrixElemAtWith(6, 6, -1, Board, Board1),
-	getPlayerInput(Board1, Player).
+	setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
+	startGame(Board1, Player).
+
+startGame(Board,Player):-
+	getPlayerColor(Player, Piece), 
+	checkEnd(Board, 1, 1, 13, Piece),
+	getPlayerInput(Board,Player).
+
+gameOver(Board):- 
+	clearScreen(40),
+	getMatrixElemAt(6,6, Board, Elem),
+	getWinner(Winner, Elem),
+	write('GAME OVER'),nl,	
+	write('The winner is: '), write(Winner),nl,nl,
+	printMorelli(Board, 0, 13),
+	startMorelli.
 
 getPlayerInput(Board,Player):-
 	printMorelli(Board, 0, 13),
-	%checkEnd(Board, 4, 3, 8),
 	printMessage(Player),
 	getPieceCoords(Board, Player, CurrRow, CurrCol),
-	getDestCoords(Board, Player, CurrRow, CurrCol, _, _).%%%ALTERADO!!!!!!!!!pcausa de singletons
+	getDestCoords(Board, Player, CurrRow, CurrCol, _, _).
 
-getPlayerInput(_,_).
 
 
 getPieceCoords(Board, Player, CurrRow, CurrCol):-
@@ -211,7 +223,7 @@ getPieceCoords(Board, Player, CurrRow, CurrCol):-
 
 getPieceCoords(Board,Player,_,_):-
 	write('ERROR!!! That is not your piece! Try again.'),nl,nl,
-	getPlayerInput(Board, Player).
+	startGame(Board, Player).
 
 
 getDestCoords(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
@@ -228,12 +240,12 @@ getDestCoords(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
 	%checkEnd(Board, 1, 1, 11, End),% Piece2),
 	%(End =:= 1 -> write('END OF GAME'); true),
 	switchPlayer(NextPlayer, Player),
-	getPlayerInput(Board4, NextPlayer).
+	startGame(Board4, NextPlayer).
 	
 
 getDestCoords(Board, Player, _, _, _, _):- %%%ALTERADO!!!!!!!!!pcausa de singletons
 	write('Destination unknown'),nl,nl,
-	getPlayerInput(Board, Player).
+	startGame(Board, Player).
 
 
 

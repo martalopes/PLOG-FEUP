@@ -21,7 +21,7 @@ mainMenu:-
 	).
 
 printMainMenu:-
-	clearScreen(40),
+	clearScreen(20),
 	write('---------------------------------'), nl,
 	write('              MORELLI            '), nl,
 	write('      Created by Richard Moxham  '), nl,
@@ -52,7 +52,7 @@ gameMenu:-
 	).
 
 startPvsP:-
-	clearScreen(40),
+	clearScreen(40), !,
 	playGamePvP(_, blackPlayer).
 
 %startPvsB:-
