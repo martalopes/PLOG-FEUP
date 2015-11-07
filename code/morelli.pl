@@ -1,18 +1,18 @@
 :- use_module(library(random)).
 :- include('auxiliar.pl').
 :- include('menu.pl').
-:- include('checkmove.pl').
-:- include('checkcapture.pl').
+:- include('gamerules.pl').
+:- include('utilities.pl').
 
-gameExample(K) :-
+gameExampleEnd(K) :-
 	K =
 	[
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+	[0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0],
 	[0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-	[0, 0, 0, 1, 2, 2, 1, 2, 1, 0, 0, 0, 0],
+	[0, 0, 1, 1, 2, 2, 1, 2, 1, 0, 0, 0, 0],
 	[0, 0, 2, 1, 2, 2, 4, 1, 1, 0, 0, 0, 0],
 	[0, 0, 2, 1, 2, 2, 2, 1, 0, 1, 0, 0, 0],
 	[0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 0],
@@ -20,6 +20,25 @@ gameExample(K) :-
 	[0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	].
+
+
+gameExampleStart(K) :-
+	K =
+	[
+	[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 2],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 ]
 	].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        BOARD DRAWING        %
@@ -178,17 +197,13 @@ startMorelli:- %I is zero, S is board size
 
 startDrawingBoard(_, BoardSize, Board1):-
 	addLine(Board1, 0, BoardSize, _). %%%ALTERADO!!!!!!!!!pcausa de singletons
-	%printIndice(0,BoardSize), %prints horizontal indice
-	%write('  '),
-	%printFirstDivisor(0, BoardSize). %prints first divisor
-	%printMorelli(Board, 0). %prints board
 
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
 	%startDrawingBoard(0,13, Board),
-	gameExample(Board),
-	setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
-	startGame(Board1, Player).
+	gameExampleStart(Board),
+	%setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
+	startGame(Board, Player).
 
 startGame(Board,Player):-
 	getPlayerColor(Player, Piece), 
@@ -215,14 +230,14 @@ getPlayerInput(Board,Player):-
 getPieceCoords(Board, Player, CurrRow, CurrCol):-
 	%getPlayerColor(Player, Piece2),
 	write('Piece row? (example: 1.)'), nl,
-	read(CurrRow),nl,
+	read(CurrRow),cleanBuffer,nl,
 	write('Piece col? (example: 1.)'), nl,
-	read(CurrCol),nl,
+	read(CurrCol),cleanBuffer, nl,
 	getMatrixElemAt(CurrRow, CurrCol, Board, Piece),
 	getPlayerColor(Player, Piece).
 
 getPieceCoords(Board,Player,_,_):-
-	write('ERROR!!! That is not your piece! Try again.'),nl,nl,
+	write('ERROR!! That is not your piece! Try again.'),nl,nl,
 	startGame(Board, Player).
 
 
@@ -237,14 +252,11 @@ getDestCoords(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
 	setMatrixElemAtWith(CurrRow, CurrCol, 0, Board1, Board2),
 	checkCapture(DestRow, DestCol, Piece, Board2, Board3),
 	checkCenter(DestRow, DestCol, Piece, Board3, Board4),
-	%checkEnd(Board, 1, 1, 11, End),% Piece2),
-	%(End =:= 1 -> write('END OF GAME'); true),
 	switchPlayer(NextPlayer, Player),
 	startGame(Board4, NextPlayer).
 	
 
-getDestCoords(Board, Player, _, _, _, _):- %%%ALTERADO!!!!!!!!!pcausa de singletons
-	write('Destination unknown'),nl,nl,
+getDestCoords(Board, Player, _, _, _, _):- 
 	startGame(Board, Player).
 
 
@@ -256,37 +268,5 @@ printMessage(Player):-
 	Player == whitePlayer, write('White Player turn: '),nl.
 
 
-checkCenter(DestRow, DestCol, Piece, Board, Board1):-
-	DeltaRow is 6 - DestRow,
-	DeltaCol is 6 - DestCol,
 
-	P1Row is 6 - DeltaRow,
-	P1Col is 6 - DeltaCol,
-
-	getMatrixElemAt(P1Row, P1Col, Board, P1),
-	P1 =:= Piece,
-
-	P2Row is 6 + DeltaCol,
-	P2Col is 6 - DeltaRow,
-
-	getMatrixElemAt(P2Row, P2Col, Board, P2),
-	P2 =:= Piece,
-
-
-	P3Row is 6 - DeltaCol,
-	P3Col is 6 + DeltaRow,
-
-	getMatrixElemAt(P3Row, P3Col, Board, P3),
-	P3 =:= Piece,
-
-	getTower(Piece, Tower),
-
-	setMatrixElemAtWith(6, 6, Tower, Board, Board1).
-
-checkCenter(_,_,_,Board,Board1):-
-	getMatrixElemAt(6,6, Board, GetPiece),
-	setMatrixElemAtWith(6, 6, GetPiece, Board, Board1).
-
-
-%endGame(DestRow, DestCol, Piece, Board, Board1):-
 

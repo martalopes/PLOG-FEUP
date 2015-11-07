@@ -9,8 +9,8 @@ getSymbol(4, 'O '). %white tower
 getPlayerColor(blackPlayer, 1).
 getPlayerColor(whitePlayer, 2).
 
-getWinner('Black Player!', 1).
-getWinner('White Player!', 2).
+getWinner('Black Player!', 3).
+getWinner('White Player!', 4).
 getWinner('Nobody! Its a Tie', -1).
 
 reverseColor(1, 2).

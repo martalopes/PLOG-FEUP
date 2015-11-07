@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  3 NOV 2015 02:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  7 NOV 2015 19:39
 entering extended mode
 **C:/Users/marta/Documents/GitHub/PLOG/report2/report2.tex
 (C:/Users/marta/Documents/GitHub/PLOG/report2/report2.tex
@@ -298,18 +298,18 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks18
 \verbatim@in@stream=\read1
 ) (report2.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
  (C:\Users\marta\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count89
@@ -326,14 +326,14 @@ LaTeX Font Info:    ... okay on input line 12.
 ) <feup-logo.png, id=1, 2252.415pt x 742.775pt>
 File: feup-logo.png Graphic file (type png)
  <use feup-logo.png>
-Package pdftex.def Info: feup-logo.png used on input line 30.
+Package pdftex.def Info: feup-logo.png used on input line 67.
 (pdftex.def)             Requested size: 225.2547pt x 74.28185pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 30.
+(Font)              <12> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 30.
+(Font)              <8> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 30.
+(Font)              <6> on input line 67.
  [1
 
 {C:/Users/marta/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./feup-logo
@@ -346,35 +346,92 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 )
 \tf@toc=\write3
  [3]
-Overfull \hbox (48.74295pt too wide) in paragraph at lines 80--81
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 99.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 99.
+
+<fig1.png, id=19, 179.92218pt x 162.6075pt>
+File: fig1.png Graphic file (type png)
+ <use fig1.png>
+Package pdftex.def Info: fig1.png used on input line 117.
+(pdftex.def)             Requested size: 161.92845pt x 146.3454pt.
+ [4 <./fig1.png>]
+<fig2.png, id=25, 180.675pt x 170.88844pt>
+File: fig2.png Graphic file (type png)
+ <use fig2.png>
+Package pdftex.def Info: fig2.png used on input line 126.
+(pdftex.def)             Requested size: 162.60599pt x 153.79816pt.
+
+<fig3.png, id=26, 176.91093pt x 167.87718pt>
+File: fig3.png Graphic file (type png)
+ <use fig3.png>
+Package pdftex.def Info: fig3.png used on input line 133.
+(pdftex.def)             Requested size: 159.21835pt x 151.08806pt.
+ [5 <./fig2.png> <./fig3.png>] <center1.png, id=32, 186.6975pt x 170.88844pt>
+File: center1.png Graphic file (type png)
+ <use center1.png>
+Package pdftex.def Info: center1.png used on input line 143.
+(pdftex.def)             Requested size: 168.02618pt x 153.79816pt.
+
+<center2.png, id=33, 179.92218pt x 168.63pt>
+File: center2.png Graphic file (type png)
+ <use center2.png>
+Package pdftex.def Info: center2.png used on input line 150.
+(pdftex.def)             Requested size: 161.92845pt x 151.76558pt.
+ [6 <./center1.png> <./center2.png>] <fig4.png, id=39, 176.15813pt x 167.87718p
+t>
+File: fig4.png Graphic file (type png)
+
+<use fig4.png>
+Package pdftex.def Info: fig4.png used on input line 162.
+(pdftex.def)             Requested size: 158.54083pt x 151.08806pt.
+ <fig41.png, id=40, 176.91093pt x 167.87718pt>
+File: fig41.png Graphic file (type png)
+ <use fig41.png>
+Package pdftex.def Info: fig41.png used on input line 169.
+(pdftex.def)             Requested size: 159.21835pt x 151.08806pt.
+
+[7 <./fig4.png> <./fig41.png>] <fig5.png, id=47, 174.6525pt x 165.61874pt>
+File: fig5.png Graphic file (type png)
+
+<use fig5.png>
+Package pdftex.def Info: fig5.png used on input line 179.
+(pdftex.def)             Requested size: 157.18579pt x 149.05548pt.
+ [8 <./fig5.png>]
+Overfull \hbox (48.74295pt too wide) in paragraph at lines 206--207
 []\OT1/cmr/m/n/10 Verificac~ao do fim do jogo, com iden-ti-ficac~ao do ven-ce
 -dor. Exem-plo: \OT1/cmr/m/it/10 game[]over(+Board,
  []
 
-[4] [5] (report2.bbl
+[9] (report2.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [6
+) [10
 
-] [7] (report2.aux) ) 
+] [11] (report2.aux) ) 
 Here is how much of TeX's memory you used:
- 1826 strings out of 493673
- 23438 string characters out of 3141530
+ 1894 strings out of 493673
+ 24373 string characters out of 3141530
  86084 words of memory out of 3000000
- 5171 multiletter control sequences out of 15000+200000
+ 5228 multiletter control sequences out of 15000+200000
  8847 words of font info for 31 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,7n,23p,473b,234s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-ti10.pfb>
-Output written on report2.pdf (7 pages, 149826 bytes).
+ 27i,7n,23p,624b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb>
+Output written on report2.pdf (11 pages, 756287 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
