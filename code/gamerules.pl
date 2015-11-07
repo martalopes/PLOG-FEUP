@@ -191,7 +191,8 @@ checkCaptureU2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureU2(_, _, _, _,_):-
 	fail.
@@ -216,7 +217,8 @@ checkCaptureD2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureD2(_, _, _, _,_):-
 	fail.
@@ -241,7 +243,8 @@ checkCaptureL2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol - 1, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureL2(_, _, _, _,_):-
 	fail.
@@ -266,7 +269,8 @@ checkCaptureR2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol + 1, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureR2(_, _, _, _,_):-
 	fail.
@@ -291,7 +295,8 @@ checkCaptureUL2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol - 1, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureUL2(_, _, _, _,_):-
 	fail.
@@ -316,7 +321,8 @@ checkCaptureUR2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol + 1, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureUR2(_, _, _, _,_):-
 	fail.
@@ -340,7 +346,8 @@ checkCaptureDL2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol - 1, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureDL2(_, _, _, _,_):-
 	fail.
@@ -365,7 +372,8 @@ checkCaptureDR2(PieceRow, PieceCol, Piece, Board, Board1):-
 	CheckCol is PieceCol + 1, 
 	getMatrixElemAt(CheckRow, CheckCol, Board, CheckPiece), 
 	reverseColor(Piece, CheckPiece),  
-	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, Board1).
+	setMatrixElemAtWith(PieceRow, PieceCol, CheckPiece, Board, TempBoard),
+	checkCenter(PieceRow, PieceCol, CheckPiece, TempBoard, Board1).
 	
 checkCaptureDR2(_, _, _, _,_):-
 	fail.

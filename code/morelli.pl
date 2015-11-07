@@ -40,6 +40,26 @@ gameExampleStart(K) :-
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 ]
 	].
+
+
+
+gameExampleTest(K) :-
+	K =
+	[
+	[0, 0, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2 ],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 1 ],
+	[1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 ]
+	].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        BOARD DRAWING        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,6 +211,7 @@ printMorelli(Board, I, BoardSize):-
 	printGameZone(Board, I).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%--Main Function--%%%%%%%
 startMorelli:- %I is zero, S is board size
 	mainMenu.
@@ -198,10 +219,12 @@ startMorelli:- %I is zero, S is board size
 startDrawingBoard(_, BoardSize, Board1):-
 	addLine(Board1, 0, BoardSize, _). %%%ALTERADO!!!!!!!!!pcausa de singletons
 
+
+
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
 	%startDrawingBoard(0,13, Board),
-	gameExampleStart(Board),
+	gameExampleTest(Board),
 	%setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
 	startGame(Board, Player).
 
