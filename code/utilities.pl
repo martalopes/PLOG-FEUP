@@ -55,3 +55,8 @@ setPosElemAux(I, Elem, [H|L], [H|ResL]):-
 	I > 0,
 	I1 is I-1,
 	setPosElemAux(I1, Elem, L, ResL).
+
+
+
+
+

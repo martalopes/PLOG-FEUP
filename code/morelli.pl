@@ -1,9 +1,16 @@
 :- use_module(library(random)).
 :- use_module(library(between)).
+:- use_module(library(lists)).
 :- include('auxiliar.pl').
 :- include('menu.pl').
 :- include('gamerules.pl').
 :- include('utilities.pl').
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% Instructions: %%%%%%%%%%%%%%%%%%%
+%%% TO START THE GAME USE: startMorelli. %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 gameExampleEnd(K) :-
 	K =
@@ -14,9 +21,9 @@ gameExampleEnd(K) :-
 	[0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
 	[0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
 	[0, 0, 0, 1, 2, 2, 1, 2, 1, 0, 0, 0, 0],
-	[0, 0, 2, 1, 2, 2, 4, 1, 1, 0, 0, 0, 0],
-	[0, 0, 2, 1, 2, 2, 2, 1, 1, 0, 0, 0, 0],
-	[0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 0],
+	[0, 2, 0, 1, 2, 2, 4, 1, 1, 0, 2, 0, 0],
+	[0, 2, 0, 1, 2, 2, 2, 1, 1, 0, 2, 0, 0],
+	[0, 0, 2, 2, 2, 2, 2, 2, 1, 0, 1, 0, 0],
 	[0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0],
 	[0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -102,14 +109,14 @@ fillLastLine([H|T], I, BoardSize, [Y|Z]):-
 	H = Y,
 	fillLastLine(T, I1, BoardSize, Z).
 
-firstPiece([H|T], _, BoardSize):- %%%ALTERADO!!!!!!!!!pcausa de singletons
+firstPiece([H|T], _, BoardSize):- 
 	random(1,3,First),
 	H = First,
 	fillLine(T, 1, BoardSize, First).
 
 fillLine(_, Max, Max, _).
 
-fillLine([H|_], I,BoardSize, First):- %%%ALTERADO!!!!!!!!!pcausa de singletons
+fillLine([H|_], I,BoardSize, First):- 
 	I+1=:=BoardSize,
 	reverseColor(Last, First),
 	H = Last.
@@ -142,7 +149,7 @@ printLine([H|T]):-
 printDivisor([]):-
 	write('|').
 
-printDivisor([_|T]):- %%%ALTERADO!!!!!!!!!pcausa de singletons
+printDivisor([_|T]):- 
 	write('|'),
 	write('----'),
 	printDivisor(T).
@@ -195,7 +202,7 @@ printIndice(I,BoardSize):-
 
 %%%%%%%% Prints Board %%%%%%%%%%
 
-printGameZone([], _).
+printGameZone([], _). %stop condition
 
 printGameZone([H|T], I):-
 	printIndiceV(I), %prints vertical indice
@@ -219,36 +226,7 @@ startMorelli:- %I is zero, S is board size
 
 startDrawingBoard(_, BoardSize, Board):-
 	addLine(Board1, 0, BoardSize, _),
-	setMatrixElemAtWith(6, 6, -1, Board1, Board).
-
-
-validMoves(A, Max, Max, Piece, Board, ListOfMoves):-
-	A2 is A + 1,
-
-	validMoves(A2, 0, Max, Piece, Board, ListOfMoves).
-
-	
-
-validMoves(A, B, Max, Piece, Board, ListOfMoves):-
-	B2 is B + 1,
-
-	getMatrixElemAt(A, B, Board, Elem),
-	((Elem \= Piece) -> validMoves(A, B2, Max, Piece, Board, ListOfMoves);
-							findall([DestRow,DestCol],validInput(A, B ,DestRow,DestCol,Board),Bag), append([A,B], Bag, Res), append(ListOfMoves, [Res], List), validMoves(A, B2, Max, Piece, Board, List)).
-
-
-validMoves(Max2, Max, Max,_, _,ListOfMoves):-	
-	Max2 is Max - 1,
-	write(ListOfMoves).
-
-
-listmoves(Player):-
-startDrawingBoard(0,13, Board),
-%setMatrixElemAtWith(6, 6, -1, Board, Board1),
-getPlayerColor(Player, Piece),
-%gameExampleStart(Board),
-printMorelli(Board, 0, 13),
-validMoves(0,0,13, Piece, Board, ListOfMoves).
+	setPosElem(6, 6, -1, Board1, Board).
 
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
@@ -263,7 +241,7 @@ startGame(Board,Player):-
 
 gameOver(Board):- 
 	clearScreen(40),
-	getMatrixElemAt(6,6, Board, Elem),
+	getElem(6,6, Board, Elem),
 	getWinner(Winner, Elem),
 	write('GAME OVER'),nl,	
 	write('The winner is: '), write(Winner),nl,nl,
@@ -279,12 +257,11 @@ getPlayerInput(Board,Player):-
 
 
 getPieceCoords(Board, Player, CurrRow, CurrCol):-
-	%getPlayerColor(Player, Piece2),
 	write('Piece row? (example: 1.)'), nl,
 	read(CurrRow),cleanBuffer,nl,
 	write('Piece col? (example: 1.)'), nl,
 	read(CurrCol),cleanBuffer, nl,
-	getMatrixElemAt(CurrRow, CurrCol, Board, Piece),
+	getElem(CurrRow, CurrCol, Board, Piece),
 	getPlayerColor(Player, Piece).
 
 getPieceCoords(Board,Player,_,_):-
@@ -299,8 +276,8 @@ getDestCoords(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
 	read(DestCol),nl,
 	validInput(CurrRow, CurrCol, DestRow, DestCol, Board),
 	getPlayerColor(Player, Piece),
-	setMatrixElemAtWith(DestRow, DestCol, Piece, Board, Board1),
-	setMatrixElemAtWith(CurrRow, CurrCol, 0, Board1, Board2),
+	setPosElem(DestRow, DestCol, Piece, Board, Board1),
+	setPosElem(CurrRow, CurrCol, 0, Board1, Board2),
 	checkCapture(DestRow, DestCol, Piece, Board2, Board3),
 	checkCenter(DestRow, DestCol, Piece, Board3, Board4),
 	switchPlayer(NextPlayer, Player),
@@ -320,5 +297,114 @@ printMessage(Player):-
 	Player == whitePlayer, write('White Player turn: '),nl.
 
 
+%%%%%% PLAYER VS. BOT %%%%%%%
+
+playGamePvB(Board,Player):-
+	startDrawingBoard(0,13, Board),!,
+	%gameExampleEnd(Board),
+	startGamePvB(Board, Player).
+
+startGamePvB(Board, Player):-
+	getPlayerColor(Player, Piece), 
+	checkEnd(Board, 1, 1, 13, Piece),
+	getInput(Board,Player).
+
+getInput(Board,Player):-
+	getPlayerColor(Player, Piece),
+	checkEnd(Board, 1, 1, 13, Piece),
+	printMorelli(Board, 0, 13),
+	printMessage(Player),
+	getPieceCoordsPvB(Board, Player, CurrRow, CurrCol),
+	getDestCoordsPvB(Board, Player, CurrRow, CurrCol, _, _).
 
 
+getDestCoordsPvB(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
+	write('Destination row? (example: 1.)'), nl,
+	read(DestRow),nl,
+	write('Destination col? (example: 1.)'), nl,
+	read(DestCol),nl,
+	validInput(CurrRow, CurrCol, DestRow, DestCol, Board),
+	getPlayerColor(Player, Piece),
+	setPosElem(DestRow, DestCol, Piece, Board, Board1),
+	setPosElem(CurrRow, CurrCol, 0, Board1, Board2),
+	checkCapture(DestRow, DestCol, Piece, Board2, Board3),
+	checkCenter(DestRow, DestCol, Piece, Board3, Board4),
+	switchPlayer(NextPlayer, Player),
+	getBot(Board4,NextPlayer).
+
+getDestCoordsPvB(Board, Player, _, _, _, _):- 
+	write('Not a valid move! Try again.'), nl,nl,
+	getInput(Board, Player).
+
+
+getPieceCoordsPvB(Board, Player, CurrRow, CurrCol):-
+	write('Piece row? (example: 1.)'), nl,
+	read(CurrRow),cleanBuffer,nl,
+	write('Piece col? (example: 1.)'), nl,
+	read(CurrCol),cleanBuffer, nl,
+	getElem(CurrRow, CurrCol, Board, Piece),
+	getPlayerColor(Player, Piece).
+
+getPieceCoordsPvB(Board,Player,_,_):-
+	write('ERROR!! That is not your piece! Try again.'),nl,nl,
+	getInput(Board, Player).
+
+
+getBot(Board, Player):-
+	getPlayerColor(Player, Piece),
+	checkEnd(Board, 1, 1, 13, Piece),
+	validMoves(0, 0, 13, Piece, Board, _).
+
+validMoves(A, Max, Max, Piece, Board, ListOfMoves):-
+	A2 is A + 1,
+
+	validMoves(A2, 0, Max, Piece, Board, ListOfMoves).
+
+	
+validMoves(A, B, Max, Piece, Board, ListOfMoves):-
+	B2 is B + 1,
+
+	getElem(A, B, Board, Elem),
+	((Elem \= Piece) -> validMoves(A, B2, Max, Piece, Board, ListOfMoves);
+							findall([DestRow,DestCol], validInput(A, B , DestRow, DestCol, Board),Bag), append([A,B], Bag, Res), length(Res, SizeRes),
+							(SizeRes > 2 -> append(ListOfMoves, [Res], List), validMoves(A, B2, Max, Piece, Board, List); 
+								validMoves(A, B2, Max, Piece, Board, ListOfMoves))).
+
+
+validMoves(Max2, Max, Max, Piece, Board, ListOfMoves):-	
+	Max2 is Max - 1,
+	getPlayerColor(Player, Piece),nl,
+	getRandomPlay(Board, ListOfMoves, Player).
+
+
+getRandomPlay(Board, ListOfMoves, Player):-
+	write('LISTINHA PASSADA: '),nl,
+	write(ListOfMoves),nl,nl,
+	getPlayerColor(Player, Piece),
+
+	length(ListOfMoves, LengthList),
+	LL is LengthList + 1,nl,
+	random(1, LL, Pos),
+	nth0(Pos, ListOfMoves, List), %random between 0 and Length of the list
+	nth0(0, List, PieceRow),
+	nth0(1, List, PieceCol),
+
+	CurrRow is PieceRow,
+	CurrCol is PieceCol,
+
+	length(List, LengthList2),
+	LL2 is LengthList2 + 1,nl,
+	random(2, LL2, PosDest), %random between 2 and Length of the list
+	nth0(PosDest, List, Play), 
+	nth0(0, Play, DRow),
+	nth0(1, Play, DCol),
+
+	DestRow is DRow,
+	DestCol is DCol,
+
+	setPosElem(DestRow, DestCol, Piece, Board, Board1),
+	setPosElem(CurrRow, CurrCol, 0, Board1, Board2),
+	checkCapture(DestRow, DestCol, Piece, Board2, Board3),
+	checkCenter(DestRow, DestCol, Piece, Board3, Board4),
+	switchPlayer(NextPlayer, Player),
+	getInput(Board4, NextPlayer).

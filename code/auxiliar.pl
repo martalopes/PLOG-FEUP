@@ -1,6 +1,6 @@
 getSymbol(1, 'x '). %black
 getSymbol(2, 'o '). %white
-getSymbol(0, '  '). 
+getSymbol(0, '  '). %empty
 getSymbol(-1, 'N '). %empty center
 getSymbol(3, 'X '). %black tower
 getSymbol(4, 'O '). %white tower

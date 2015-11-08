@@ -192,7 +192,8 @@
 
 \subsection{Representação do Estado do Jogo e Visualização do Tabuleiro} 
 \par Sendo o tabuleiro de 13x13 o estado de jogo é representado numa matriz com esse tamanho, onde a partir dos predicados que obtêm e modificam o elemento vão substitui-lo para a visualização no tabuleiro. Cada elemento dessa lista será um espaço vazio, uma peça ou o centro vazio ou ocupado por uma torre. 
-\par Para distinguir as peças dos dois jogadores, estas vão ter um valor diferente. As peças do jogador preto vão ter valor 1 e a sua torre o valor 4 e as peças do jogador branco vão ter valor 2 sendo que a sua torre terá o valor 5. O centro vazio terá o valor de -1 e o espaço vazio de 0. A visualização do tabuleiro é feita com o predicado \textbf{startDrawingBoard(\_, +BoardSize, -Board1)}.
+\par Para distinguir as peças dos dois jogadores, estas vão ter um valor diferente. As peças do jogador preto vão ter valor 1 e a sua torre o valor 4 e as peças do jogador branco vão ter valor 2 sendo que a sua torre terá o valor 5. O centro vazio terá o valor de -1 e o espaço vazio de 0. A visualização do tabuleiro é feita com o predicado \textbf{startDrawingBoard(\_, +BoardSize, -Board1)}. 
+\par Na \textbf{visualização do tabuleiro}, as peças pretas serão um 'x' e a torre preta um 'X', já as peças brancas serão um 'o' e a sua torre um 'O'. O centro vazio será representado por um 'N'. 
 \par A representação de vários estados do tabuleiro será então apresentada em baixo com a respectiva visualização do tabuleiro na consola. 
 
 \begin{figure}
@@ -251,7 +252,7 @@
 
 \end{figure}
 
-\par Este predicado não é utilizado no jogo devido ao facto de não conseguirmos chegar ao modo de jogo do Bot, apesar disso conseguimos gerar a lista de jogadas válidas corretamente.
+
 \subsection{Execução de Jogadas}
 
 
@@ -268,34 +269,32 @@ Depois de todas as verificações e alterações na matriz de jogo, é chamado o
 \subsection{Final de Jogo}
 Quando o predicado de jogo é chamado, é sempre verificado o final de jogo com o predicado \textbf{checkEnd(+Board, 1, 1, 13, +Piece)}, se não houver mais movimentos possiveis para o jogador que está a jogar este predicado chama o predicado \textbf{gameOver(+Board)} que vai terminar o jogo dizendo o vencedor ou, se for o caso, devolver um empate e regressar ao menu inicial.
 
+\section{Jogada do Computador}
+
+\par Devido à falta de tempo apenas nos foi possivel implementar o \textbf{random bot}. É feito no predicado \textbf{getRandomPlay(+Board, +ListOfMoves,+ Player)} que antes já passou pelo predicado \textbf{validMoves} que vai gerar as jogadas possiveis para um dado jogador. 
+\par O \textit{bot} vai escolher da lista de listas de jogadas, uma lista aleatória, obtendo nas primeiras duas posições a posição original da peça. De seguida, vai escolher da lista uma jogada possível e vai implementa-la. As verificações de captura de peças adversárias, de centro e de fim de jogo também são implementadas neste caso. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
 \section{Interface com o Utilizador}
 
-A interface da linha de comandos foi feita para ser simples de perceber e para facilitar a experiência de jogo. Os menus de navegação estão identificados e para navegar entre eles é necessário escolher o número correspondente e pressionar \textit{Enter}. 
+A interface da linha de comandos foi feita para ser simples de perceber e para facilitar a experiência de jogo. Os menus de navegação estão identificados e para navegar entre eles é necessário escolher o número correspondente e pressionar \textit{Enter}. O jogador para além do menu de jogo, poderá aceder a um pequeno resumo das regras, e um \textit{About}.
 
 \begin{figure}[h!]
 \begin{center}
-\hspace*{-0.5cm}\includegraphics[scale=1]{menu1.png}
+\hspace*{-0.5cm}\includegraphics[scale=0.9]{menu1.png}
 \caption{Menu inicial}
 \end{center}
 \end{figure}
 
 \begin{figure}[h!]
 \begin{center}
-\hspace*{-0.5cm}\includegraphics[scale=0.83]{helpmenu.png}
-\caption{Instruções de jogo}
-\end{center}
-\end{figure}
-
-\begin{figure}[h!]
-\begin{center}
-\hspace*{-0.5cm}\includegraphics[scale=1]{menu2.png}
+\hspace*{-0.5cm}\includegraphics[scale=0.9]{menu2.png}
 \caption{Menu de Jogo}
 \end{center}
 \end{figure}
 
-.\linebreak\linebreak\linebreak\linebreak\linebreak\linebreak\linebreak
+\newpage
 \par Durante o jogo a linha de comandos é limpa, é exibida uma mensagem para o jogador respectivo iniciar a jogada, e o estado atual do tabuleiro é imprimido na consola. É então solicitado ao jogador as coordenadas da peça que quer movimentar e as coordenadas de destino. 
 \par Para a inserção de coordenadas o jogador terá que inserir primeiro a \textit{Row} e de seguida a \textit{Column}. Quando o jogador tenta jogar com uma peça que não seja a dele, ou mover a sua peça para um destino inválido, são exibidas mensagens de erro e o jogador terá de recomeçar a inserção das coordenadas de origem e destino. 
 
@@ -320,11 +319,13 @@ A interface da linha de comandos foi feita para ser simples de perceber e para f
 \end{center}
 \end{figure}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Conclusões}
 Para a realização do Morelli foi dispendido bastante tempo mas achamos que o resultado final foi positivo e conseguimos com este projecto adquirir bastantes conhecimentos. Apesar de acharmos que o tempo para a entrega final poderia ter sido maior, foi possivel concluir uma grande parte do projecto. 
-\par As dificuldades que fomos encontrando ao longo do desenvolvimento foram superadas, apesar de que a implementação do \textit{bot} não foi possivel e também achamos que poderiamos ter melhorado algumas partes do código para não ficar tão extenso. 
+\par As dificuldades que fomos encontrando ao longo do desenvolvimento foram superadas, apesar de que a implementação do \textit{bot} não foi implementada totalmente e também poderiamos ter melhorado algumas partes do código para não ficar tão extenso. 
 
 
 
@@ -333,12 +334,12 @@ Para a realização do Morelli foi dispendido bastante tempo mas achamos que o r
 \renewcommand\refname{Bibliografia}
 \bibliographystyle{plain}
 \bibliography{myrefs}
-\par "Morelli." BoardGameGeeks. N.p., 2011. Web. 2015.
-\par "Morelli at Boardspace.net"  Boardspace.net. N.p., 2011. Web. 2015.
+\par [1] "Morelli." BoardGameGeeks. N.p., 2011. Web. 2015.
+\par [2] "Morelli at Boardspace.net"  Boardspace.net. N.p., 2011. Web. 2015.
 
 \newpage
 \appendix
-\section{Pasta \textit{src}}
-O código \textit{Prolog} do projeto encontra-se na pasta \textit{src} que está anexada junto deste relatório.
+\section{Pasta \textit{code}}
+O código \textit{Prolog} do projeto encontra-se na pasta \textit{code} que está anexada junto deste relatório.
 
 \end{document}

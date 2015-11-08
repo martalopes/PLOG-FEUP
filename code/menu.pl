@@ -54,8 +54,8 @@ startPvsP:-
 	playGamePvP(_, blackPlayer).
 
 startPvsB:-
-	write('Not available. Wait for next update!'),nl,
-		pressEnterToContinue.
+	clearScreen(40), !,
+	playGamePvB(_,blackPlayer).
 
 
 startBvsB:-

@@ -1,0 +1,24 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdftex 2015.10.3)  8 NOV 2015 11:52
+entering extended mode
+**C:/Users/marta/Documents/GitHub/PLOG/report2/myrefs.bib
+(C:/Users/marta/Documents/GitHub/PLOG/report2/myrefs.bib
+Overfull \hbox (7.8015pt too wide) in paragraph at lines 1--8
+[]\tenrm @misc123, au-thor = BoardGameGeeks, ti-tle = Morelli, year = 2011, how
+-pub-lished = http://www.fe.up.pt,|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm m
+.\tenrm i
+.\tenrm s
+.etc.
+
+)
+*
+! Emergency stop.
+<*> ...ta/Documents/GitHub/PLOG/report2/myrefs.bib
+                                                  
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!
