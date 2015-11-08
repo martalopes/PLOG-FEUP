@@ -9,7 +9,6 @@
 \usepackage{verbatim}
 
 
-
 %Todas as figuras devem ser referidas no texto. %\ref{fig:codigoFigura}
 %
 %%Exemplo de código para inserção de figuras
@@ -60,7 +59,7 @@
 \Large{Programação em Lógica}\linebreak
 }
 
-\author{\textbf{Grupo xx:}\\ Francisco Rodrigues - Número 1 \\ Marta Lopes - 201208067 \\\linebreak\linebreak \\
+\author{\textbf{Grupo 3:}\\ Francisco Rodrigues - 201305627 \\ Marta Lopes - 201208067 \\\linebreak\linebreak \\
  \\ Faculdade de Engenharia da Universidade do Porto \\ Rua Roberto Frias, s\/n, 4200-465 Porto, Portugal \linebreak\linebreak\linebreak
 \linebreak\linebreak\vspace{1cm}}
 %\date{Junho de 2007}
@@ -106,7 +105,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{O Jogo XXX}
+\section{Morelli}
 
 \par \textit{Morelli} é um jogo de tabuleiro criado por \textit{Richar Moxham} em 2011. É jogado por apenas 2 jogadores num tabuleiro de 13x13 quadrados em faixas concêntricas. A faixa de fora será a maior, com 48 casas, terminando na casa central. 
 
@@ -191,32 +190,132 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lógica do Jogo}
 
-Descrever o projeto e implementação da lógica do jogo em Prolog, incluindo a forma de representação do estado do tabuleiro e sua visualização, execução de movimentos, verificação do cumprimento das regras do jogo, determinação do final do jogo e cálculo das jogadas a realizar pelo computador utilizando diversos níveis de jogo. Sugere-se a estruturação desta secção da seguinte forma:
+\subsection{Representação do Estado do Jogo e Visualização do Tabuleiro} 
+\par Sendo o tabuleiro de 13x13 o estado de jogo é representado numa matriz com esse tamanho, onde a partir dos predicados que obtêm e modificam o elemento vão substitui-lo para a visualização no tabuleiro. Cada elemento dessa lista será um espaço vazio, uma peça ou o centro vazio ou ocupado por uma torre. 
+\par Para distinguir as peças dos dois jogadores, estas vão ter um valor diferente. As peças do jogador preto vão ter valor 1 e a sua torre o valor 4 e as peças do jogador branco vão ter valor 2 sendo que a sua torre terá o valor 5. O centro vazio terá o valor de -1 e o espaço vazio de 0. A visualização do tabuleiro é feita com o predicado \textbf{startDrawingBoard(\_, +BoardSize, -Board1)}.
+\par A representação de vários estados do tabuleiro será então apresentada em baixo com a respectiva visualização do tabuleiro na consola. 
 
-\subsection{Representação do Estado do Jogo} Pode ser idêntico ao descrito no relatório intercalar.)
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.8]{gamestart.png}
+\caption{Exemplo de um estado inicial do tabuleiro}
+\end{center}
+\end{figure}
 
-\subsection{Visualização do Tabuleiro} (Pode ser idêntico ao descrito no relatório intercalar.)
+\begin{figure}
+\begin{center}
+\hspace*{-0.1cm}\includegraphics[scale=0.8]{gamestartboard.png}
+\caption{Visualização de um estado inicial na consola}
+\end{center}
+\end{figure}
 
-\subsection{Lista de Jogadas Válidas} Obtenção de uma lista de jogadas possíveis. Exemplo: \textit{valid\_moves(+Board, -ListOfMoves)}.
 
-\subsection{Execução de Jogadas} Validação e execução de uma jogada num tabuleiro, obtendo o novo estado do jogo. Exemplo: \textit{move(+Move, +Board, -NewBoard)}.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.8]{gamemiddle.png}
+\caption{Exemplo de um estado intermédio do tabuleiro}
+\end{center}
+\end{figure}
 
-\subsection{Avaliação do Tabuleiro} Avaliação do estado do jogo, que permitirá comparar a aplicação das diversas jogadas disponíveis. Exemplo: \textit{value(+Board, +Player, -Value)}.
+\begin{figure}
+\begin{center}
+\hspace*{-0.1cm}\includegraphics[scale=0.8]{gamemiddleboard.png}
+\caption{Visualização de um estado intermédio na consola}
+\end{center}
+\end{figure}
 
-\subsection{Final do Jogo} Verificação do fim do jogo, com identificação do vencedor. Exemplo: \textit{game\_over(+Board, -Winner)}.
 
-\subsection{Jogada do Computador} Escolha da jogada a efetuar pelo computador, dependendo do nível de dificuldade. Por exemplo: \textit{choose\_move(+Level, +Board, -Move)}.
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.8]{gameend.png}
+\caption{Exemplo de um estado final do tabuleiro}
+\end{center}
+\end{figure}
 
+\begin{figure}
+\begin{center}
+\hspace*{-0.1cm}\includegraphics[scale=0.8]{gameendboard.png}
+\caption{Visualização de um estado final na consola}
+\end{center}
+\end{figure}
+
+\newpage
+
+\subsection{Execução de Jogadas}
+
+
+\par A cada jogada, é pedido ao jogador as coordenadas da peça que deseja mover e as coordenadas de destino da respectiva peça. Ao longo deste processo, vão ser feitas as seguintes verificações: 
+\begin{enumerate}
+	\item \textbf{getPieceCoords(+Board, +Player,+CurrRow, +CurrCol)} vai verificar se as coordenadas de origem correspondem à peça do jogador respectivo. 
+	\item \textbf{getDestCoords(+Board, +Player, +CurrRow, +CurrCol, +DestRow, +DestCol)} vai ter os predicados de verificação e execução do \textit{move}
+	\subitem O predicado de verificação, \textbf{validInput(+CurrRow, +CurrCol, +DestRow, +DestCol, +Board)}, vai fazer todas as verificações de acordo com as regras para saber se o movimento é legal ou não. Se for legal a matriz vai ser alterada. 
+	\subitem Após a alteração da matriz vão ser usados predicados para verificar capturas (\textbf{checkCapture(+DestRow, +DestCol, +Piece,+ Board2, -Board3)}) e a captura do centro (\textbf{checkCenter(+DestRow,+DestCol, \linebreak +Piece, +Board3, -Board4)}). A captura do centro é verificada não só para a peça que foi movimentada, mas também para as peças que possam ser capturadas na sequência da jogada. 
+\end{enumerate}
+
+Depois de todas as verificações e alterações na matriz de jogo, é chamado o predicado \textbf{switchPlayer(-NextPlayer, +Player)} que vai alternar os jogadores no fim de cada jogada.
+
+\subsection{Final de Jogo}
+Quando o predicado de jogo é chamado, é sempre verificado o final de jogo com o predicado \textbf{checkEnd(+Board, 1, 1, 13, +Piece)}, se não houver mais movimentos possiveis para o jogador que está a jogar este predicado chama o predicado \textbf{gameOver(+Board)} que vai terminar o jogo e regressar ao menu inicial.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Interface com o Utilizador}
 
-Descrever o módulo de interface com o utilizador em modo de texto.
+A interface da linha de comandos foi feita para ser simples de perceber e para facilitar a experiência de jogo. Os menus de navegação estão identificados e para navegar entre eles é necessário escolher o número correspondente e pressionar \textit{Enter}. 
+
+\begin{figure}[h!]
+\begin{center}
+\hspace*{-0.5cm}\includegraphics[scale=1]{menu1.png}
+\caption{Menu inicial}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\hspace*{-0.5cm}\includegraphics[scale=0.83]{helpmenu.png}
+\caption{Instruções de jogo}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\hspace*{-0.5cm}\includegraphics[scale=1]{menu2.png}
+\caption{Menu de Jogo}
+\end{center}
+\end{figure}
+.\linebreak
+\par Durante o jogo a linha de comandos é limpa, é exibida uma mensagem para o jogador respectivo iniciar a jogada, e o estado atual do tabuleiro é imprimido na consola. É então solicitado ao jogador as coordenadas da peça que quer movimentar, e as coordenadas de destino. 
+\par Para a inserção de coordenadas o jogador terá que inserir primeiro a \textit{Row} e de seguida a \textit{Column}. Quando o jogador tenta jogar com uma peça que não seja a dele, ou mover a sua peça para um destino inválido, são exibidas mensagens de erro e o jogador terá de recomeçar a inserção das coordenadas de origem e destino. 
+
+\begin{figure}[h!]
+\begin{center}
+\hspace*{-0.5cm}\includegraphics[scale=1]{game1.png}
+\caption{Realização de uma jogada}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\hspace*{-0.5cm}\includegraphics[scale=1]{game2.png}
+\caption{Exemplo de uma seleção de peça inválida}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\hspace*{-0.5cm}\includegraphics[scale=1]{game3.png}
+\caption{Exemplo de uma escolha de coordenadas de destino inválidas}
+\end{center}
+\end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Conclusões}
-Que conclui deste projecto? Como poderia melhorar o trabalho desenvolvido?
+Para a realização do Morelli foi dispendido bastante tempo mas achamos que o resultado final foi positivo e conseguimos com este projecto adquirir bastantes conhecimentos. Apesar de acharmos que o tempo para a entrega final poderia ter sido maior, foi possivel concluir uma grande parte do projecto. 
+\par As dificuldades que fomos encontrando ao longo do desenvolvimento foram superadas, apesar de que a implementação do \textit{bot} não foi possivel e também achamos que poderiamos ter melhorado algumas partes do código para não ficar tão extenso. 
+
 
 
 \clearpage
@@ -229,7 +328,7 @@ Que conclui deste projecto? Como poderia melhorar o trabalho desenvolvido?
 
 \newpage
 \appendix
-\section{Nome do Anexo}
-Código Prolog implementado devidamente comentado e outros elementos úteis que não sejam essenciais ao relatório.
+\section{Pasta \textit{src}}
+O código \textit{Prolog} do projeto encontra-se na pasta \textit{src} que está anexada junto deste relatório.
 
 \end{document}

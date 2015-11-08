@@ -53,13 +53,12 @@ startPvsP:-
 	clearScreen(40), !,
 	playGamePvP(_, blackPlayer).
 
-%startPvsB:-
-%	startPvsBGame(Game),
-%	playGame(Game).
+startPvsB:-
+	write('Not available. Wait for next update!').
 
-%startBvsB:-
-%	startPvsPGame(Game),
-%	playGame(Game).
+startBvsB:-
+	write('Not available. Wait for next update!').
+
 
 
 printGameMenu:-
@@ -79,9 +78,28 @@ printGameMenu:-
 
 helpMenu:-
 	clearScreen(40),
-	write('---------------------------------'), nl,
-	write('             HELP MENU           '), nl,
-	write('---------------------------------'), nl,
+	write('---------------------------------------------'), nl,
+	write('                   HELP MENU                 '), nl,
+	write('---------------------------------------------'), nl,
+	write('Moving a Piece:                              '), nl,nl,
+	write('To move a piece you have to choose a house   '), nl,
+	write('that belongs to a level closer to the center.'), nl,
+	write('You can only go through the center if its   '), nl,
+	write('empty, and you cannot stop there.            '), nl,
+	write('There cannot be any pieces in your way.      '), nl,nl,nl,
+	write('Capturing a Piece:                           '), nl,nl,
+	write('To capture a piece of the other team you have'), nl,
+	write('to surround it in any direction with two pieces.'), nl,nl,nl,
+	write('Capturing the center:                        '), nl,
+	write('To capture the center you have to make a square'), nl,
+	write('surrounding the center.                      '), nl,nl,nl,
+	write('End of game:                                 '), nl,nl,
+	write('The game ends when there is no more moves the'), nl,
+	write('player that has the center captured, wins.   '), nl,
+	write('---------------------------------------------'), nl,
+
+
+
 	pressEnterToContinue.
 
 
@@ -91,8 +109,12 @@ aboutMenu:-
 	write('           ABOUT THE GAME        '), nl,
 	write('---------------------------------'), nl,
 	write('                                 '), nl,
+	write(' Authors:                        '), nl,
+	write('  Francisco Rodrigues            '), nl,
+	write('  Marta Lopes                    '), nl,
 	write('                                 '), nl,
-	write('                                 '), nl,
+	write('---------------------------------'), nl,
+
 	pressEnterToContinue.
 	
 
