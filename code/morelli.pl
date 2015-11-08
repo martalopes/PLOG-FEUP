@@ -1,4 +1,5 @@
 :- use_module(library(random)).
+:- use_module(library(between)).
 :- include('auxiliar.pl').
 :- include('menu.pl').
 :- include('gamerules.pl').
@@ -216,17 +217,44 @@ printMorelli(Board, I, BoardSize):-
 startMorelli:- %I is zero, S is board size
 	mainMenu.
 
-startDrawingBoard(_, BoardSize, Board1):-
-	addLine(Board1, 0, BoardSize, _). %%%ALTERADO!!!!!!!!!pcausa de singletons
+startDrawingBoard(_, BoardSize, Board):-
+	addLine(Board1, 0, BoardSize, _),
+	setMatrixElemAtWith(6, 6, -1, Board1, Board).
 
 
+validMoves(A, Max, Max, Piece, Board, ListOfMoves):-
+	A2 is A + 1,
+
+	validMoves(A2, 0, Max, Piece, Board, ListOfMoves).
+
+	
+
+validMoves(A, B, Max, Piece, Board, ListOfMoves):-
+	B2 is B + 1,
+
+	getMatrixElemAt(A, B, Board, Elem),
+	((Elem \= Piece) -> validMoves(A, B2, Max, Piece, Board, ListOfMoves);
+							findall([DestRow,DestCol],validInput(A, B ,DestRow,DestCol,Board),Bag), append([A,B], Bag, Res), append(ListOfMoves, [Res], List), validMoves(A, B2, Max, Piece, Board, List)).
+
+
+validMoves(Max2, Max, Max,_, _,ListOfMoves):-	
+	Max2 is Max - 1,
+	write(ListOfMoves).
+
+
+listmoves(Player):-
+startDrawingBoard(0,13, Board),
+%setMatrixElemAtWith(6, 6, -1, Board, Board1),
+getPlayerColor(Player, Piece),
+%gameExampleStart(Board),
+printMorelli(Board, 0, 13),
+validMoves(0,0,13, Piece, Board, ListOfMoves).
 
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
-	startDrawingBoard(0,13, Board),
+	startDrawingBoard(0,13, Board),!,
 	%gameExampleEnd(Board),
-	setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
-	startGame(Board1, Player).
+	startGame(Board, Player).
 
 startGame(Board,Player):-
 	getPlayerColor(Player, Piece), 
@@ -280,6 +308,7 @@ getDestCoords(Board, Player, CurrRow, CurrCol, DestRow, DestCol):-
 	
 
 getDestCoords(Board, Player, _, _, _, _):- 
+	write('Not a valid move! Try again.'), nl,nl,
 	startGame(Board, Player).
 
 

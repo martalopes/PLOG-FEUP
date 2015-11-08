@@ -129,6 +129,7 @@ searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, It, u, Board):-
 	searchVector(NewCurrRow, CurrCol, DeltaRow, DeltaCol, It1, u, Board).
 
 validInput(CurrRow,CurrCol, DestRow, DestCol, Board):-
+	between(0,12,DestRow),between(0,12,DestCol),
 	((DestRow =:= 6, DestCol =:= 6) -> fail; 
 	calculateLevel(CurrRow, CurrCol, CurrLevel),
 	calculateLevel(DestRow, DestCol, DestLevel),
@@ -136,13 +137,11 @@ validInput(CurrRow,CurrCol, DestRow, DestCol, Board):-
 	DeltaRow is DestRow - CurrRow,
 	DeltaCol is DestCol - CurrCol,
 	validMove(DeltaRow, DeltaCol, VecDirection),
-	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board),
-	write('ok'),nl,nl).
+	searchVector(CurrRow, CurrCol, DeltaRow, DeltaCol, 0, VecDirection, Board)).
 
 
 
 validInput(_,_,_,_,_):-
-	write('Not a valid move! Try again.'), nl,nl,
 	fail.
 
 
@@ -415,5 +414,35 @@ checkCenter(_,_,_,Board,Board1):-
 	setMatrixElemAtWith(6, 6, GetPiece, Board, Board1).
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% CHECK END %%%%%%%%%%%%%%%%%%%
+
+checkEnd(Board, Row, Max, Max, Piece):-
+	Row2 is Row + 1, 
+	(Row2 < 13 -> Row2 =< Max, checkEnd(Board, Row2, 1, Max, Piece);
+	
+	gameOver(Board)).
+
+
+checkEnd(Board, Row, Col, Max, Piece):-
+	RowPlus is Row + 1,
+	RowMinus is Row - 1,
+	ColPlus is Col + 1,
+	ColMinus is Col - 1,
+
+	getMatrixElemAt(Row, Col, Board, Elem),
+	(Elem \= Piece -> checkEnd(Board, Row, ColPlus, Max,Piece);
+
+
+	noMovement(Row, Col, RowPlus, Col, Board), 
+	noMovement(Row, Col, RowMinus, Col, Board), 
+	noMovement(Row, Col, Row, ColPlus, Board), 
+	noMovement(Row, Col, Row, ColMinus, Board), 
+	noMovement(Row, Col, RowPlus, ColPlus, Board), 
+	noMovement(Row, Col, RowPlus, ColMinus, Board), 
+	noMovement(Row, Col, RowMinus, ColPlus, Board), 
+	noMovement(Row, Col, RowMinus, ColMinus, Board), 
+	
+	checkEnd(Board, Row, ColPlus, Max, Piece)).
+
+checkEnd(_,_,_,_,_).

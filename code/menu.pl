@@ -54,10 +54,14 @@ startPvsP:-
 	playGamePvP(_, blackPlayer).
 
 startPvsB:-
-	write('Not available. Wait for next update!').
+	write('Not available. Wait for next update!'),nl,
+		pressEnterToContinue.
+
 
 startBvsB:-
-	write('Not available. Wait for next update!').
+	write('Not available. Wait for next update!'),nl,
+		pressEnterToContinue.
+
 
 
 

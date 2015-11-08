@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  8 NOV 2015 03:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.3)  8 NOV 2015 08:30
 entering extended mode
 **C:/Users/marta/Documents/GitHub/PLOG/report2/report2.tex
 (C:/Users/marta/Documents/GitHub/PLOG/report2/report2.tex
@@ -444,85 +444,114 @@ Overfull \hbox (9.89154pt too wide) in paragraph at lines 237--238
 
 [8 <./fig5.png>] [9 <./gamestart.png> <./gamestartboard.png>] [10 <./gamemiddle
 .png> <./gamemiddleboard.png>] [11 <./gameend.png> <./gameendboard.png>]
-Overfull \hbox (0.72614pt too wide) in paragraph at lines 250--251
+<listajogadas.png, id=74, 453.19313pt x 301.125pt>
+File: listajogadas.png Graphic file (type png)
+ <use listajogadas.png>
+Package pdftex.def Info: listajogadas.png used on input line 249.
+(pdftex.def)             Requested size: 385.21597pt x 255.95744pt.
+
+Overfull \hbox (25.98961pt too wide) in paragraph at lines 249--250
+[]| [] 
+ []
+
+
+Overfull \hbox (0.72614pt too wide) in paragraph at lines 261--262
 []\OT1/cmr/bx/n/10 getDestCoords(+Board, +Player, +Cur-r-Row, +Cur-r-Col, +Des-
 
  []
 
-
-Overfull \hbox (30.61134pt too wide) in paragraph at lines 252--253
-\OT1/cmr/bx/n/10 ard2, -Board3)\OT1/cmr/m/n/10 ) e a cap-tura do cen-tro (\OT1/
-cmr/bx/n/10 checkCenter(+DestRow,+DestCol,
- []
-
-[12] <menu1.png, id=77, 414.04688pt x 212.29312pt>
+[12 <./listajogadas.png>] <menu1.png, id=79, 414.04688pt x 212.29312pt>
 File: menu1.png Graphic file (type png)
- <use menu1.png>
-Package pdftex.def Info: menu1.png used on input line 268.
+
+<use menu1.png>
+Package pdftex.def Info: menu1.png used on input line 279.
 (pdftex.def)             Requested size: 414.04585pt x 212.2926pt.
 
-Overfull \hbox (54.81949pt too wide) in paragraph at lines 268--269
+Overfull \hbox (54.81949pt too wide) in paragraph at lines 279--280
  | [] 
  []
 
-<helpmenu.png, id=78, 414.04688pt x 287.57437pt>
+<helpmenu.png, id=80, 414.04688pt x 287.57437pt>
 File: helpmenu.png Graphic file (type png)
  <use helpmenu.png>
-Package pdftex.def Info: helpmenu.png used on input line 275.
+Package pdftex.def Info: helpmenu.png used on input line 286.
 (pdftex.def)             Requested size: 343.65881pt x 238.68666pt.
 
-<menu2.png, id=79, 414.04688pt x 231.86626pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<menu2.png, id=81, 414.04688pt x 231.86626pt>
 File: menu2.png Graphic file (type png)
  <use menu2.png>
-Package pdftex.def Info: menu2.png used on input line 282.
+Package pdftex.def Info: menu2.png used on input line 293.
 (pdftex.def)             Requested size: 414.04585pt x 231.86568pt.
 
-Overfull \hbox (54.81949pt too wide) in paragraph at lines 282--283
+Overfull \hbox (54.81949pt too wide) in paragraph at lines 293--294
  | [] 
  []
 
-[13 <./menu1.png> <./helpmenu.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 286--287
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 []\OT1/cmr/m/n/10 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 286--287
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
-<game1.png, id=86, 263.48438pt x 465.99094pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
+
+ []
+
+[13 <./menu1.png>] [14 <./helpmenu.png> <./menu2.png>]
+<game1.png, id=92, 263.48438pt x 465.99094pt>
 File: game1.png Graphic file (type png)
  <use game1.png>
-Package pdftex.def Info: game1.png used on input line 292.
+Package pdftex.def Info: game1.png used on input line 304.
 (pdftex.def)             Requested size: 263.48372pt x 465.98979pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<game2.png, id=87, 278.54062pt x 236.38312pt>
+<game2.png, id=93, 278.54062pt x 236.38312pt>
 File: game2.png Graphic file (type png)
  <use game2.png>
-Package pdftex.def Info: game2.png used on input line 299.
+Package pdftex.def Info: game2.png used on input line 311.
 (pdftex.def)             Requested size: 278.53993pt x 236.38254pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<game3.png, id=88, 278.54062pt x 281.55188pt>
+<game3.png, id=94, 278.54062pt x 281.55188pt>
 File: game3.png Graphic file (type png)
  <use game3.png>
-Package pdftex.def Info: game3.png used on input line 306.
+Package pdftex.def Info: game3.png used on input line 318.
 (pdftex.def)             Requested size: 278.53993pt x 281.55118pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[14 <./menu2.png>] [15 <./game1.png>]
-
-LaTeX Warning: Text page 16 contains only floats.
-
-[16 <./game2.png> <./game3.png>] [17] (report2.bbl
+ [15 <./game1.png>] [16 <./game2.png> <./game3.png>] [17] (report2.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
@@ -530,10 +559,10 @@ LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
 ] [19] (report2.aux) ) 
 Here is how much of TeX's memory you used:
- 1957 strings out of 493673
- 25383 string characters out of 3141530
+ 1962 strings out of 493673
+ 25482 string characters out of 3141530
  87084 words of memory out of 3000000
- 5278 multiletter control sequences out of 15000+200000
+ 5282 multiletter control sequences out of 15000+200000
  9565 words of font info for 33 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  27i,7n,23p,624b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -545,9 +574,9 @@ s/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 msy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 i10.pfb>
-Output written on report2.pdf (19 pages, 1029993 bytes).
+Output written on report2.pdf (19 pages, 1044583 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
+ 137 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

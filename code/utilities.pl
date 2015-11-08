@@ -25,72 +25,33 @@ waitForEnter:-
 
 
 %%% 1. element row; 2. element column; 3. matrix; 4. query element.
-getMatrixElemAt(0, ElemCol, [ListAtTheHead|_], Elem):-
-	getListElemAt(ElemCol, ListAtTheHead, Elem).
+getElem(0, GetCol, [Head|_], Elem):-
+	getElemAux(GetCol, Head, Elem).
 
-getMatrixElemAt(ElemRow, ElemCol, [_|RemainingLists], Elem):-
-	ElemRow > 0,
-	ElemRow1 is ElemRow-1,
-	getMatrixElemAt(ElemRow1, ElemCol, RemainingLists, Elem).
+getElem(GetRow, GetCol, [_|Tail], Elem):-
+	GetRow > 0,
+	GetRow1 is GetRow-1,
+	getElem(GetRow1, GetCol, Tail, Elem).
 
 %%% 1. element position; 2. list; 3. query element.
-getListElemAt(0, [ElemAtTheHead|_], ElemAtTheHead).
-getListElemAt(Pos, [_|RemainingElems], Elem):-
+getElemAux(0, [ElemAtTheHead|_], ElemAtTheHead).
+getElemAux(Pos, [_|RemainingElems], Elem):-
 	Pos > 0,
 	Pos1 is Pos-1,
-	getListElemAt(Pos1, RemainingElems, Elem).
+	getElemAux(Pos1, RemainingElems, Elem).
 
 
 %%% 1. element row; 2. element column; 3. element to use on replacement; 3. current matrix; 4. resultant matrix.
-setMatrixElemAtWith(0, ElemCol, NewElem, [RowAtTheHead|RemainingRows], [NewRowAtTheHead|RemainingRows]):-
-	setListElemAtWith(ElemCol, NewElem, RowAtTheHead, NewRowAtTheHead).
-setMatrixElemAtWith(ElemRow, ElemCol, NewElem, [RowAtTheHead|RemainingRows], [RowAtTheHead|ResultRemainingRows]):-
-	ElemRow > 0,
-	ElemRow1 is ElemRow-1,
-	setMatrixElemAtWith(ElemRow1, ElemCol, NewElem, RemainingRows, ResultRemainingRows).
+setPosElem(0, GetCol, NewElem, [RowHead|RemainingRows], [NewRowHead|RemainingRows]):-
+	setPosElemAux(GetCol, NewElem, RowHead, NewRowHead).
+setPosElem(GetRow, GetCol, NewElem, [RowHead|RemainingRows], [RowHead|ResultRemainingRows]):-
+	GetRow > 0,
+	GetRow1 is GetRow-1,
+	setPosElem(GetRow1, GetCol, NewElem, RemainingRows, ResultRemainingRows).
 
 %%% 1. position; 2. element to use on replacement; 3. current list; 4. resultant list.
-setListElemAtWith(0, Elem, [_|L], [Elem|L]).
-setListElemAtWith(I, Elem, [H|L], [H|ResL]):-
+setPosElemAux(0, Elem, [_|L], [Elem|L]).
+setPosElemAux(I, Elem, [H|L], [H|ResL]):-
 	I > 0,
 	I1 is I-1,
-	setListElemAtWith(I1, Elem, L, ResL).
-
-
-checkEnd(Board, Row, Max, Max, Piece):-
-	Row2 is Row + 1, 
-	(Row2 < 13 -> Row2 =< Max, checkEnd(Board, Row2, 1, Max, Piece);
-	
-	gameOver(Board)).
-
-
-checkEnd(Board, Row, Col, Max, Piece):-
-	RowPlus is Row + 1,
-	RowMinus is Row - 1,
-	ColPlus is Col + 1,
-	ColMinus is Col - 1,
-
-	getMatrixElemAt(Row, Col, Board, Elem),
-	(Elem \= Piece -> checkEnd(Board, Row, ColPlus, Max,Piece);
-
-
-	noMovement(Row, Col, RowPlus, Col, Board), 
-	noMovement(Row, Col, RowMinus, Col, Board), 
-	noMovement(Row, Col, Row, ColPlus, Board), 
-	noMovement(Row, Col, Row, ColMinus, Board), 
-	noMovement(Row, Col, RowPlus, ColPlus, Board), 
-	noMovement(Row, Col, RowPlus, ColMinus, Board), 
-	noMovement(Row, Col, RowMinus, ColPlus, Board), 
-	noMovement(Row, Col, RowMinus, ColMinus, Board), 
-	
-	checkEnd(Board, Row, ColPlus, Max, Piece)).
-
-checkEnd(_,_,_,_,_).
-
-
-
-
-
-
-
-
+	setPosElemAux(I1, Elem, L, ResL).

@@ -240,7 +240,18 @@
 \end{figure}
 
 \newpage
+\subsection{Lista de Jogadas Válidas}
 
+\par A lista de listas jogadas válidas vai ser obtida a partir do predicado \textbf{validMoves(0,0,13, +Piece, +Board, -ListOfMoves)}. A lista de cada jogada vai conter no inicio as coordenadas de origem da peça pretendida e de seguida todas as coordenadas possiveis de destino para essa peça, por exemplo: 
+\par [ [0, 0, [1,1], [2,2], [3,3], [4,4], [5,5], [7,7], [8,8], [9,9], [10,10], [11,11]]. 
+\begin{figure}[h!]
+
+\hspace*{-0.5cm}\includegraphics[scale=0.85]{listajogadas.png}
+\caption{Código para gerar a lista de jogadas válidas}
+
+\end{figure}
+
+\par Este predicado não é utilizado no jogo devido ao facto de não conseguirmos chegar ao modo de jogo do Bot, apesar disso conseguimos gerar a lista de jogadas válidas corretamente.
 \subsection{Execução de Jogadas}
 
 
@@ -248,17 +259,17 @@
 \begin{enumerate}
 	\item \textbf{getPieceCoords(+Board, +Player,+CurrRow, +CurrCol)} vai verificar se as coordenadas de origem correspondem à peça do jogador respectivo. 
 	\item \textbf{getDestCoords(+Board, +Player, +CurrRow, +CurrCol, +DestRow, +DestCol)} vai ter os predicados de verificação e execução do \textit{move}
-	\subitem O predicado de verificação, \textbf{validInput(+CurrRow, +CurrCol, +DestRow, +DestCol, +Board)}, vai fazer todas as verificações de acordo com as regras para saber se o movimento é legal ou não. Se for legal a matriz vai ser alterada. 
-	\subitem Após a alteração da matriz vão ser usados predicados para verificar capturas (\textbf{checkCapture(+DestRow, +DestCol, +Piece,+ Board2, -Board3)}) e a captura do centro (\textbf{checkCenter(+DestRow,+DestCol, \linebreak +Piece, +Board3, -Board4)}). A captura do centro é verificada não só para a peça que foi movimentada, mas também para as peças que possam ser capturadas na sequência da jogada. 
+	\subitem 2.1. O predicado de verificação, \textbf{validInput(+CurrRow, +CurrCol, +DestRow, +DestCol, +Board)}, vai fazer todas as verificações de acordo com as regras para saber se o movimento é legal ou não. Se for legal a matriz vai ser alterada. 
+	\subitem 2.2. Após a alteração da matriz vão ser usados predicados para verificar capturas (\textbf{checkCapture(+DestRow, +DestCol, +Piece,+ Board2, -Board3)}) e a captura do centro (\textbf{checkCenter(+DestRow, \linebreak +DestCol,+Piece, +Board3, -Board4)}). A captura do centro é verificada não só para a peça que foi movimentada, mas também para as peças que possam ser capturadas na sequência da jogada. 
 \end{enumerate}
 
 Depois de todas as verificações e alterações na matriz de jogo, é chamado o predicado \textbf{switchPlayer(-NextPlayer, +Player)} que vai alternar os jogadores no fim de cada jogada.
 
 \subsection{Final de Jogo}
-Quando o predicado de jogo é chamado, é sempre verificado o final de jogo com o predicado \textbf{checkEnd(+Board, 1, 1, 13, +Piece)}, se não houver mais movimentos possiveis para o jogador que está a jogar este predicado chama o predicado \textbf{gameOver(+Board)} que vai terminar o jogo e regressar ao menu inicial.
+Quando o predicado de jogo é chamado, é sempre verificado o final de jogo com o predicado \textbf{checkEnd(+Board, 1, 1, 13, +Piece)}, se não houver mais movimentos possiveis para o jogador que está a jogar este predicado chama o predicado \textbf{gameOver(+Board)} que vai terminar o jogo dizendo o vencedor ou, se for o caso, devolver um empate e regressar ao menu inicial.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+
 \section{Interface com o Utilizador}
 
 A interface da linha de comandos foi feita para ser simples de perceber e para facilitar a experiência de jogo. Os menus de navegação estão identificados e para navegar entre eles é necessário escolher o número correspondente e pressionar \textit{Enter}. 
@@ -283,8 +294,9 @@ A interface da linha de comandos foi feita para ser simples de perceber e para f
 \caption{Menu de Jogo}
 \end{center}
 \end{figure}
-.\linebreak
-\par Durante o jogo a linha de comandos é limpa, é exibida uma mensagem para o jogador respectivo iniciar a jogada, e o estado atual do tabuleiro é imprimido na consola. É então solicitado ao jogador as coordenadas da peça que quer movimentar, e as coordenadas de destino. 
+
+.\linebreak\linebreak\linebreak\linebreak\linebreak\linebreak\linebreak
+\par Durante o jogo a linha de comandos é limpa, é exibida uma mensagem para o jogador respectivo iniciar a jogada, e o estado atual do tabuleiro é imprimido na consola. É então solicitado ao jogador as coordenadas da peça que quer movimentar e as coordenadas de destino. 
 \par Para a inserção de coordenadas o jogador terá que inserir primeiro a \textit{Row} e de seguida a \textit{Column}. Quando o jogador tenta jogar com uma peça que não seja a dele, ou mover a sua peça para um destino inválido, são exibidas mensagens de erro e o jogador terá de recomeçar a inserção das coordenadas de origem e destino. 
 
 \begin{figure}[h!]
@@ -294,21 +306,19 @@ A interface da linha de comandos foi feita para ser simples de perceber e para f
 \end{center}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 \begin{center}
 \hspace*{-0.5cm}\includegraphics[scale=1]{game2.png}
 \caption{Exemplo de uma seleção de peça inválida}
 \end{center}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 \begin{center}
 \hspace*{-0.5cm}\includegraphics[scale=1]{game3.png}
 \caption{Exemplo de uma escolha de coordenadas de destino inválidas}
 \end{center}
 \end{figure}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage

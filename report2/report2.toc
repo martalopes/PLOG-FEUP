@@ -3,9 +3,10 @@
 \contentsline {section}{\numberline {2}Morelli}{4}
 \contentsline {section}{\numberline {3}L\IeC {\'o}gica do Jogo}{8}
 \contentsline {subsection}{\numberline {3.1}Representa\IeC {\c c}\IeC {\~a}o do Estado do Jogo e Visualiza\IeC {\c c}\IeC {\~a}o do Tabuleiro}{8}
-\contentsline {subsection}{\numberline {3.2}Execu\IeC {\c c}\IeC {\~a}o de Jogadas}{12}
-\contentsline {subsection}{\numberline {3.3}Final de Jogo}{12}
+\contentsline {subsection}{\numberline {3.2}Lista de Jogadas V\IeC {\'a}lidas}{12}
+\contentsline {subsection}{\numberline {3.3}Execu\IeC {\c c}\IeC {\~a}o de Jogadas}{12}
+\contentsline {subsection}{\numberline {3.4}Final de Jogo}{13}
 \contentsline {section}{\numberline {4}Interface com o Utilizador}{13}
-\contentsline {section}{\numberline {5}Conclus\IeC {\~o}es}{15}
+\contentsline {section}{\numberline {5}Conclus\IeC {\~o}es}{17}
 \contentsline {section}{Bibliografia}{18}
 \contentsline {section}{\numberline {A}Pasta \textit {src}}{19}
