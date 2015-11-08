@@ -223,10 +223,10 @@ startDrawingBoard(_, BoardSize, Board1):-
 
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
-	%startDrawingBoard(0,13, Board),
-	gameExampleTest(Board),
-	%setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
-	startGame(Board, Player).
+	startDrawingBoard(0,13, Board),
+	%gameExampleTest(Board),
+	setMatrixElemAtWith(6, 6, -1, Board, Board1), !,
+	startGame(Board1, Player).
 
 startGame(Board,Player):-
 	getPlayerColor(Player, Piece), 
