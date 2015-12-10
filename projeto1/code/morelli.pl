@@ -230,8 +230,8 @@ startDrawingBoard(_, BoardSize, Board):-
 
 %%%%%% PLAYER VS. PLAYER %%%%%%%
 playGamePvP(Board,Player):-
-	startDrawingBoard(0,13, Board),!,
-	%gameExampleEnd(Board),
+	%startDrawingBoard(0,13, Board),!,
+	gameExampleEnd(Board),
 	startGame(Board, Player).
 
 startGame(Board,Player):-
