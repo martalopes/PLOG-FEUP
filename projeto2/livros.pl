@@ -96,7 +96,7 @@ livros(ShelveSpaces, NrShelves, MaxWidthShelf, MaxHeight):-
 	domain(ShelveSpacesFlattened, 1, NrShelves),
 	
 	initializeShelves(ShelveSpacesFlattened, NrShelves, MaxWidthShelf, 0),
-
+	!,
 	labeling([minimize(Cost)], ShelveSpacesFlattened),
 	write(ShelveSpacesFlattened),nl,
 	write(Cost).
