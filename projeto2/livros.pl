@@ -147,6 +147,7 @@ printBookInfo([Book|Rest], IdCount):-
 	getBookShelf(Book, Shelf),
 	book(IdCount, Title, Author, _, _, Width, _),
 	nl,
+	write('Book '),
 	write(IdCount),nl,
 	write(Title),
 	write(' by '), 
@@ -155,7 +156,7 @@ printBookInfo([Book|Rest], IdCount):-
 	write(Shelf),
 	write(' with a witdth of '),
 	write(Width),nl,
-	printBookShelves(Rest, Idnew).
+	printBookInfo(Rest, Idnew).
 
 printShelfInfo([], _).
 printShelfInfo([H|T], IdCount):-
