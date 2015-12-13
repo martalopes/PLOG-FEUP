@@ -2,12 +2,12 @@
 :-use_module(library(lists)).
 
 %id, nome, autor, tema, 
-book(1, 'Memorial do Covento', 		'Saramago', 'Romance', 	1995, 3, 15).
-book(2, 'Lusiadas', 				'Camoes', 	'Classic', 	1995, 3, 15).
-book(3, 'Maias', 					'Eca', 		'Classic', 	1995, 2, 15).
-book(4, 'A Viagem do Elefante', 	'Saramago', 'Romance', 	1995, 2, 15).
-book(5, 'A Viagem do Elefante', 	'Saramago', 'Romance', 	1995, 2, 15).
-book(6, 'A Viagem do Elefante', 	'Saramago', 'Romance', 	1995, 2, 15).
+book(1, 'Ensaio Sobre a Cegueira', 						'Saramago', 		'Romance', 	1995, 3, 15).
+book(2, 'Lusiadas', 									'Camoes', 			'Classic', 	1572, 3, 16).
+book(3, 'Os Maias', 									'Eca de Queiros',	'Classic', 	1888, 2, 15).
+book(4, 'A Viagem do Elefante', 						'Saramago', 		'Romance', 	2008, 2, 19).
+book(5, 'O Evangelho segundo Jesus Cristo', 			'Saramago', 		'Romance', 	1991, 2, 15).
+book(6, 'A Caverna', 									'Saramago', 		'Romance', 	2000, 2, 25).
 
 
 listBooks(List, MaxHeight) :-
@@ -21,12 +21,17 @@ checkBookHeight([],[],_).
 checkBookHeight([Book|T], BookResult, MaxHeight):-
 	nth0(3, Book, BookHeight),
 	BookHeight > MaxHeight,
-	write('Um livro não foi adicionado'), %EDITAR PARA FICAR BONITO COM NOME E ASSIM NÉ
+	nth0(0, Book, ID),
+	book(ID, Name, _, _,_,_,Height),
+	nl,
+	write('The book '),
+	write(Name ), 
+	write(' was not added because it has an height of '),
+	write(Height),nl,
 	checkBookHeight(T,  BookResult, MaxHeight).
 
 
 checkBookHeight([Book|T], [BResH|BResT],MaxHeight):-
-	nth0(3, Book, BookHeight),
 	BResH = Book,
 	checkBookHeight(T, BResT, MaxHeight).
 
@@ -78,7 +83,7 @@ removeEmpty(ShelfList, MaxWidthShelf, Res):-
 	sum(ShelfList, #=, Total),
 	Res #= Total - (CounterTemp * MaxWidthShelf).
 
-getCostShelfUsage(ShelveSpacesFlattened, MaxWidthShelf, NrShelves, Res):-
+getCostShelfUsage(ShelveSpacesFlattened, MaxWidthShelf, NrShelves, ShelfList, Res):-
 	length(ShelfList, NrShelves),
 	getEmptyShelveSpaces(ShelveSpacesFlattened, 1, ShelfList, MaxWidthShelf),
 	removeEmpty(ShelfList, MaxWidthShelf, Res).
@@ -91,14 +96,16 @@ livros(ShelveSpaces, NrShelves, MaxWidthShelf, MaxHeight):-
 
 	flatten(ShelveSpaces, ShelveSpacesFlattened),
 
-	getCostShelfUsage(ShelveSpacesFlattened, MaxWidthShelf, NrShelves, Cost),
+	getCostShelfUsage(ShelveSpacesFlattened, MaxWidthShelf, NrShelves, EmptySpaces, Cost),
 
 	domain(ShelveSpacesFlattened, 1, NrShelves),
 	
 	initializeShelves(ShelveSpacesFlattened, NrShelves, MaxWidthShelf, 0),
 	!,
 	labeling([minimize(Cost)], ShelveSpacesFlattened),
-	write(ShelveSpacesFlattened),nl,
+	printBookInfo(Books, 1),nl,
+	printShelfInfo(EmptySpaces, 1),nl,
+	%write(Books),nl,
 	write(Cost).
 
 
@@ -130,5 +137,35 @@ initializeShelves(SSpaces, NrShelves, MaxWidthShelf, CurrShelf):-
 	count(NextShelf, SSpaces, #=<, MaxWidthShelf), 
 	initializeShelves(SSpaces, NrShelves, MaxWidthShelf, NextShelf). 
 
-	
+
+getBookShelf([_, [Shelf|_]], Shelf).
+
+
+printBookInfo([], _).
+printBookInfo([Book|Rest], IdCount):-
+	Idnew is IdCount+1,
+	getBookShelf(Book, Shelf),
+	book(IdCount, Title, Author, _, _, Width, _),
+	nl,
+	write(IdCount),nl,
+	write(Title),
+	write(' by '), 
+	write(Author),
+	write(' is in shelf '),
+	write(Shelf),
+	write(' with a witdth of '),
+	write(Width),nl,
+	printBookShelves(Rest, Idnew).
+
+printShelfInfo([], _).
+printShelfInfo([H|T], IdCount):-
+	Idnew is IdCount+1,
+	nl,
+	write('Shelf '),
+	write(IdCount),
+	write(' has '),
+	write(H),
+	write(' empty spaces.'), nl,
+	printShelfInfo(T, Idnew).
+
 
