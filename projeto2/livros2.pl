@@ -85,8 +85,9 @@ livros(BooksRes, NrShelves, WidthShelf, MaxHeight):-
 	labeling([], BooksRes),
 	printShelfs(BooksRes, 0, Size, Res),
 	printResult(Res, 0, WidthShelf),
+	nl,write('### STATISTICS ###'),nl,
 	print_time,
-    fd_statistics,!.
+    fd_statistics,nl,!.
 
 printShelfs(_, C, C, []).
 printShelfs(Books, C, Size, [LH | LT]):-
@@ -98,11 +99,11 @@ printShelfs(Books, C, Size, [LH | LT]):-
 	printShelfs(Books, C1, Size, LT).
 
 printResult([],_,_):-
-	write('-------------------------------------------------------------\n').
+	write('-----------------------------------------------------------------------------------------\n').
 printResult([LH | LT], Counter, Max) :-
 	Mod is Counter mod Max,
 	Mod == 0,
-	write('-------------------------------------------------------------\n'),
+	write('-----------------------------------------------------------------------------------------\n'),
 	NShelf is Counter div Max + 1,
 	C is Counter + 1,
 	write('Shelf '),

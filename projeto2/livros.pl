@@ -105,8 +105,9 @@ livros(ShelveSpaces, NrShelves, MaxWidthShelf, MaxHeight):-
 	labeling([minimize(Cost)], ShelveSpacesFlattened),
 	printBookInfo(Books, 1),nl,
 	printShelfInfo(EmptySpaces, 1),nl,
-	%write(Books),nl,
-	write(Cost).
+	write('### STATISTICS ###'),nl,
+	print_time,
+    fd_statistics,nl.
 
 
 /*flatten(Res, List), write(Res),
@@ -170,3 +171,8 @@ printShelfInfo([H|T], IdCount):-
 	printShelfInfo(T, Idnew).
 
 
+reset_timer :- statistics(walltime,_).  
+print_time :-
+        statistics(walltime,[_,T]),
+        TS is ((T//10)*10)/1000,
+        nl, write('Time: '), write(TS), write('s'), nl, nl.
