@@ -81,17 +81,20 @@ livros(BooksRes, NrShelves, WidthShelf, MaxHeight):-
 	sortByHeight(HeightList, AuthorList),
 	checkHeight(HeightList, MaxHeight),
 	sortByYear(YearList, HeightList, AuthorList),
+	reset_timer,
 	labeling([], BooksRes),
 	printShelfs(BooksRes, 0, Size, Res),
-	printResult(Res, 0, WidthShelf).
+	printResult(Res, 0, WidthShelf),
+	print_time,
+    fd_statistics,!.
 
 printShelfs(_, C, C, []).
 printShelfs(Books, C, Size, [LH | LT]):-
 	C1 is C + 1,
 	nth1(Index, Books, C1),
-	book(Index, Nome, Autor, _,AnoPub, Altura),
-	author(Autor, NomeAutor),
-	LH = [Nome, NomeAutor, AnoPub, Altura],
+	book(Index, Name, Author, _,YearPub, Height),
+	author(Author, AuthorName),
+	LH = [Name, ' escrito por': AuthorName, ' em': YearPub, ' com altura de': Height],
 	printShelfs(Books, C1, Size, LT).
 
 printResult([],_,_):-
@@ -111,3 +114,9 @@ printResult([LH | LT], Counter, Max) :-
 	C is Counter + 1,
 	write(LH), nl,
 	printResult(LT, C, Max).
+
+reset_timer :- statistics(walltime,_).  
+print_time :-
+        statistics(walltime,[_,T]),
+        TS is ((T//10)*10)/1000,
+        nl, write('Time: '), write(TS), write('s'), nl, nl.
