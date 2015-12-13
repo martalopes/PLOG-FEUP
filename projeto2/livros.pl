@@ -1,13 +1,13 @@
 :-use_module(library(clpfd)).
 :-use_module(library(lists)).
-:-use_module(library(random)).
 
 %id, nome, autor, tema, 
-book(1, 'Memorial do Covento', 		1, 'Romance', 	1995, 3, 15).
-book(2, 'Lusiadas', 				2, 'Classic', 	1995, 3, 15).
-book(3, 'Lol', 						1, 'Romance', 	1995, 2, 15).
-%book(3, 'Maias', 					'Eca', 		'Classic', 	1995, 3, 15).
-book(4, 'A Viagem do Elefante', 	1, 'Romance', 	1995, 2, 15).
+book(1, 'Memorial do Covento', 		'Saramago', 'Romance', 	1995, 3, 15).
+book(2, 'Lusiadas', 				'Camoes', 	'Classic', 	1995, 3, 15).
+book(3, 'Maias', 					'Eca', 		'Classic', 	1995, 2, 15).
+book(4, 'A Viagem do Elefante', 	'Saramago', 'Romance', 	1995, 2, 15).
+book(5, 'A Viagem do Elefante', 	'Saramago', 'Romance', 	1995, 2, 15).
+book(6, 'A Viagem do Elefante', 	'Saramago', 'Romance', 	1995, 2, 15).
 
 
 listBooks(List, MaxHeight) :-
@@ -16,15 +16,6 @@ listBooks(List, MaxHeight) :-
 			ListTemp),
 	checkBookHeight(ListTemp, ListTemp2, MaxHeight),
 	addShelfSpace(ListTemp2, List).
-
-getIdAuthor([], L, L):- write(L).
-getIdAuthor([LH|LT], PrevResList, ResList):-
-	nth0(0, LH, Bk),
-	nth0(0, Bk, ID),
-	nth0(1, Bk, Author),
-	Book = [[ID, Author]],
-	append(PrevResList, Book, ResList2),
-	getIdAuthor(LT, ResList2, ResList).
 
 checkBookHeight([],[],_).
 checkBookHeight([Book|T], BookResult, MaxHeight):-
@@ -35,6 +26,7 @@ checkBookHeight([Book|T], BookResult, MaxHeight):-
 
 
 checkBookHeight([Book|T], [BResH|BResT],MaxHeight):-
+	nth0(3, Book, BookHeight),
 	BResH = Book,
 	checkBookHeight(T, BResT, MaxHeight).
 
@@ -69,24 +61,45 @@ getShelvesSpaces([],[]).
 getShelvesSpaces([[_, ShelfH] | BooksT], [ShelfH |ShelfT]) :-
 	getShelvesSpaces(BooksT, ShelfT).
 
-livros(BooksRes, NrShelves, MaxWidthShelf, MaxHeight):-
-	listBooks(Books, MaxHeight),
-	length(Books, Size),
-	length(BooksRes, Size),
 
+getEmptyShelveSpaces(_, _, [], _).
+getEmptyShelveSpaces(ShelveSpacesFlattened, NrShelf, [ShelfH | ShelfT], MaxWidthShelf):-
+	NrShelves1 is NrShelf+1,
+	getShelfEmpty(ShelveSpacesFlattened, NrShelf, MaxWidthShelf, ShelfH),
+	getEmptyShelveSpaces(ShelveSpacesFlattened, NrShelves1, ShelfT, MaxWidthShelf).
+
+
+getShelfEmpty(ShelveSpacesFlattened, Shelf, MaxWidthShelf, R):-
+	count(Shelf, ShelveSpacesFlattened, #=, Res),
+	R #= MaxWidthShelf - Res.
+
+removeEmpty(ShelfList, MaxWidthShelf, Res):-
+	count(MaxWidthShelf, ShelfList, #=, CounterTemp),
+	sum(ShelfList, #=, Total),
+	Res #= Total - (CounterTemp * MaxWidthShelf).
+
+getCostShelfUsage(ShelveSpacesFlattened, MaxWidthShelf, NrShelves, Res):-
+	length(ShelfList, NrShelves),
+	getEmptyShelveSpaces(ShelveSpacesFlattened, 1, ShelfList, MaxWidthShelf),
+	removeEmpty(ShelfList, MaxWidthShelf, Res).
+
+livros(ShelveSpaces, NrShelves, MaxWidthShelf, MaxHeight):-
+	%length(Books, N),
+	listBooks(Books, MaxHeight),
 
 	getShelvesSpaces(Books, ShelveSpaces),
+
 	flatten(ShelveSpaces, ShelveSpacesFlattened),
-	domain(ShelveSpacesFlattened, 1, NrShelves),	
+
+	getCostShelfUsage(ShelveSpacesFlattened, MaxWidthShelf, NrShelves, Cost),
+
+	domain(ShelveSpacesFlattened, 1, NrShelves),
+	
 	initializeShelves(ShelveSpacesFlattened, NrShelves, MaxWidthShelf, 0),
 
-	random_permutation(BooksRes, Books),
-	costAuthor(BooksRes,Size,0,CostRes),	
-
-	
-	nl,write('Custo:'), write(CostRes),
-flatten(BooksRes, BooksResF),
-	labeling([minimize(CostRes)],BooksResF).
+	labeling([minimize(Cost)], ShelveSpacesFlattened),
+	write(ShelveSpacesFlattened),nl,
+	write(Cost).
 
 
 /*flatten(Res, List), write(Res),
@@ -111,39 +124,11 @@ flatten([LH | LT], [LH | FlattenedT]) :-
 	flatten(LT, FlattenedT).
 
 
-initializeShelves(SSpaces,Max, _, Max):-
-	labeling([], SSpaces).
+initializeShelves(_,Max, _, Max).
 initializeShelves(SSpaces, NrShelves, MaxWidthShelf, CurrShelf):-
 	NextShelf is CurrShelf + 1,
 	count(NextShelf, SSpaces, #=<, MaxWidthShelf), 
 	initializeShelves(SSpaces, NrShelves, MaxWidthShelf, NextShelf). 
 
-
-
-
-costAuthor(_,0,Cost,CostRes):-
-	CostRes #= Cost.
-
-costAuthor([BH|BT], X,Cost, CostRes):-
-
-	nth0(0,BH, H1),
-	nth0(1,H1,AuthorHead),
-	nth0(0,BT,Head),
-	nth0(0, Head, HeadTemp),
-	nth0(1,HeadTemp,AuthorTail),
-
-	AuthorHead \= AuthorTail,
-	Cost1 #= Cost + 1,
-	X1 is X-1,
-	costAuthor(BT, X1,Cost1, CostRes).
-
-costAuthor([_|BT], X,Cost, CostRes):-
-	X1 is X-1,
-	costAuthor(BT, X1,Cost, CostRes).
-
-
-
-
-
-
+	
 
