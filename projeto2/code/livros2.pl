@@ -9,6 +9,7 @@ book(4, 'A Viagem do Elefante', 						1, 'Romance', 	2008, 15).
 book(5, 'O Evangelho segundo Jesus Cristo', 			1, 'Romance', 	1991, 15).
 book(6, 'A Caverna', 									1, 'Romance', 	2000, 15).
 
+
 author(1, 'Saramago').
 author(2, 'Camoes').
 author(3, 'Eca de Queiros').
@@ -82,7 +83,7 @@ livros(BooksRes, NrShelves, WidthShelf, MaxHeight):-
 	checkHeight(HeightList, MaxHeight),
 	sortByYear(YearList, HeightList, AuthorList),
 	reset_timer,
-	labeling([], BooksRes),
+	labeling([time_out(60000,_)], BooksRes),
 	printShelfs(BooksRes, 0, Size, Res),
 	printResult(Res, 0, WidthShelf),
 	nl,write('### STATISTICS ###'),nl,

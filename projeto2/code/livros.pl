@@ -102,7 +102,7 @@ livros(ShelveSpaces, NrShelves, MaxWidthShelf, MaxHeight):-
 	
 	initializeShelves(ShelveSpacesFlattened, NrShelves, MaxWidthShelf, 0),
 	!,
-	labeling([minimize(Cost)], ShelveSpacesFlattened),
+	labeling([minimize(Cost),time_out(60000,_)], ShelveSpacesFlattened),
 	printBookInfo(Books, 1),nl,
 	printShelfInfo(EmptySpaces, 1),nl,
 	write('### STATISTICS ###'),nl,

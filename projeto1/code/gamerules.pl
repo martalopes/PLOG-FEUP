@@ -393,14 +393,14 @@ checkCenter(DestRow, DestCol, Piece, Board, Board1):-
 													P1Row is P1RowAux, P1Col is P1ColAux),
 	
 	getElem(P1Row, P1Col, Board, P1),
-	write(P1Row), write(','), write(P1Col), write(': '), write(P1),nl,nl,
+	%write(P1Row), write(','), write(P1Col), write(': '), write(P1),nl,nl,
 	P1 =:= Piece,
 
 	P2Row is 6 + DeltaCol,
 	P2Col is 6 - DeltaRow,
 
 	getElem(P2Row, P2Col, Board, P2),
-	write(P2Row), write(','), write(P2Col), write(': '), write(P2),nl,nl,
+	%write(P2Row), write(','), write(P2Col), write(': '), write(P2),nl,nl,
 	P2 =:= Piece,
 
 
@@ -408,7 +408,7 @@ checkCenter(DestRow, DestCol, Piece, Board, Board1):-
 	P3Col is 6 + DeltaRow,
 
 	getElem(P3Row, P3Col, Board, P3),
-	write(P3Row), write(','), write(P3Col), write(': '), write(P3),nl,nl,
+	%write(P3Row), write(','), write(P3Col), write(': '), write(P3),nl,nl,
 	P3 =:= Piece,
 
 	getTower(Piece, Tower),

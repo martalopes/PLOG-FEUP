@@ -54,8 +54,26 @@ startPvsP:-
 	playGamePvP(_, blackPlayer).
 
 startPvsB:-
+	printChoosePiece,
+	getChar(Answer),
+	(
+		Answer = '1' -> nl,nl,nl,nl,playGamePvB(_,whitePlayer);
+		Answer = '2' -> nl,nl,nl,nl,playGamePvB(_,blackPlayer);
+
+		nl,
+		write('Error: invalid input.'), nl,
+		pressEnterToContinue, nl,
+		startPvsB
+	).
+	
+
+	
+
+printChoosePiece:-
 	clearScreen(40), !,
-	playGamePvB(_,blackPlayer).
+	write('  Who do you want to be?    '),nl,
+	write('  1. White Player           '),nl,
+	write('  2. Black Player           '),nl.
 
 
 startBvsB:-
